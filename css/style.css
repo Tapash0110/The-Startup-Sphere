@@ -10,19 +10,29 @@ body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+
 .nav {
     display: flex;
     align-items: center;
     justify-content: right;
 }
 
+.user{
+    font-size: large;
+    background: linear-gradient(to right, #7f40ed, #f2405a);
+    padding: 1vh;
+    color: #fff;
+    border-radius: 10px;
+    margin-top: 10px;
+}
 a {
     text-decoration: none;
     color: inherit;
 }
 
 .add-startup,
-.login {
+.login
+ {
     margin: 2vh 1vh;
     padding: 2vh;
     background: linear-gradient(to right, #7f40ed, #f2405a);

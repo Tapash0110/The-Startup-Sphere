@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <nav class="nav">
+    <nav class="nav" id="navbar">
         <a href="pages/addstartup.html">
             <div class="add-startup">
                 <span><i class="fa-solid fa-circle-plus"></i></span>
@@ -26,7 +26,7 @@
         <a href="pages/login.html">
             <div class="login">
                 <span><i class="fa-solid fa-user"></i></span>
-                <span>LOGIN / REGISTER</span>
+                <span >LOGIN / REGISTER</span>
             </div>
         </a>
     </nav>
@@ -39,7 +39,7 @@
         <div class="filer-section">
             <form id="myform">
                 <label for="industry">Industry:</label>
-                <select name="industry" id="industry" required>
+                <select name="industry" id="industry" >
                     <option value="" diasabled selected>Choose an industry</option>
                     <option value="healthcare">Healthcare</option>
                     <option value="analytics">Analytics</option>
@@ -124,7 +124,7 @@
         </div>
     </div>
     <div class="status">
-        <span>Startups your search matched : 74</span>
+        <span id="found_card"></span>
     </div>
     <div class="startup-container"></div>
 

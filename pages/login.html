@@ -16,16 +16,53 @@
     <div class="container">
         <div class="login-container">
             <h1>Sign in for top startups</h1>
-            <form action="">
+            <form action="/login" method="post" id="loginform">
                 <label for="username" class="label">Enter Username:</label>
-                <input type="text" placeholder="Username" class="email" required>
+                <input type="text" placeholder="Username" class="username" name="username" required>
                 <label for="password" class="label">Enter Password:</label>
-                <input type="password" class="email" placeholder="Password" required>
-                <button class="btn" type="submit" formaction="http://192.168.34.83:3000/index.html">Submit</button>
+                <input type="password" class="password" name="password" placeholder="Password" required>
+                <button class="btn">Submit</button>
             </form>
             <p>New to StartupSphere? <a href="signup.html">Sign up here</a></p>
+            <div class="status" id="statusdisplay"></div>
         </div>
     </div>
+
+    <script>
+        let loginform = document.getElementById("loginform");
+        let display = document.getElementById("statusdisplay");
+
+        async function login(e) {
+            e.preventDefault();
+            //recovering deta of form
+            let formData = new FormData(loginform);
+            const data = {};
+            for (let keyValue of formData.entries()) {
+                data[keyValue[0]] = keyValue[1];
+            }
+            //fetch from server
+            let a = await fetch("/pages/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            })
+            let b = await a.json();
+            console.log(b);
+
+            if (b.statuscode === 1) {
+                display.innerHTML = b.status;
+                setTimeout(function () {
+                    window.location.href = "/";
+                }, 1000);
+            } else {
+                display.innerHTML = b.status;
+            }
+
+        }
+        loginform.addEventListener("submit", login);
+    </script>
 </body>
 
 </html>

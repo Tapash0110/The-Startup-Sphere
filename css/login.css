@@ -1,20 +1,23 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
-body{
+
+body {
     background-color: black;
     color: rgb(255, 255, 255);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-.container{
+
+.container {
     width: 100vw;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.login-container{
+
+.login-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -26,18 +29,23 @@ body{
     color: #000000;
     padding: 20px;
 }
-.login-container h1{
-    background: linear-gradient(to right,#7f40ed, #f2405a);
-    -webkit-background-clip: text; 
-    background-clip: text; 
+
+.login-container h1 {
+    background: linear-gradient(to right, #7f40ed, #f2405a);
+    -webkit-background-clip: text;
+    background-clip: text;
     color: transparent;
     margin: 10px 0;
 }
-.label{
+
+.label {
     font-size: 25px;
     margin: 8px 4px;
 }
-.email{
+
+.email,
+.password,
+.username {
     width: 95%;
     height: 5vh;
     margin: 8px 0;
@@ -46,10 +54,14 @@ body{
     border: 3px solid #b7b3b3;
     border-radius: 10px;
 }
-.email:hover{
+
+.email:hover,
+.password:hover,
+.username:hover {
     border: 3px solid #9c4ea4;
 }
-.btn{
+
+.btn {
     padding: 10px;
     margin: 5px;
     border: none;
@@ -60,7 +72,8 @@ body{
     cursor: pointer;
     transition: 0.5s;
 }
-.btn:hover{
+
+.btn:hover {
     padding: 15px;
-    margin:0px;
+    margin: 0px;
 }
