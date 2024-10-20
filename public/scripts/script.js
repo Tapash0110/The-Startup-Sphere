@@ -173,22 +173,22 @@ async function loadd(card_list = []) {
          <div class="card">
         <div class="card-left">
             <img src="https://via.placeholder.com/100" alt="Company Logo">
-            <h2>Company Name</h2>
-            <p>What the company does</p>
+            <h2>${item.name}</h2>
+            <p>${item.motive}</p>
         </div>
         <div class="card-right">
             <h3>Company Details</h3>
             <div class="details">
                 <div>
-                    <p><strong>Founding Year:</strong> 2020</p>
+                    <p><strong>Founding Year:</strong> ${item.founded}</p>
                     <p><strong>Funding Stage:</strong> Series A</p>
                 </div>
                 <div>
-                    <p><strong>Company Size:</strong> 50-100 Employees</p>
-                    <p><strong>Funding Amount:</strong> $5M</p>
+                    <p><strong>Company Size:</strong> ${item.size} employees</p>
+                    <p><strong>Funding Amount:</strong> ${item.funding}</p>
                 </div>
                 <div>
-                    <p><strong>Industry:</strong> Technology</p>
+                    <p><strong>Industry:</strong> ${item.industry}</p>
                 </div>
                 <div>
                     <p class="vacancies"><strong>Current Vacancies:</strong> 12 Open Positions</p>
@@ -202,6 +202,7 @@ async function loadd(card_list = []) {
                 <a href="#">Visit Portal</a>
             </div>
             <div class="social-media">
+
                 <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30">
                         <path
                             d="M22.46 6c-.77.34-1.6.57-2.46.67a4.33 4.33 0 001.89-2.39 8.68 8.68 0 01-2.75 1.05 4.32 4.32 0 00-7.36 3.94A12.27 12.27 0 013 4.73a4.32 4.32 0 001.34 5.77 4.29 4.29 0 01-1.96-.54v.05a4.32 4.32 0 003.46 4.24 4.34 4.34 0 01-1.95.07 4.32 4.32 0 004.03 3 8.7 8.7 0 01-6.38 1.79 12.28 12.28 0 006.64 1.95c7.98 0 12.35-6.61 12.35-12.35 0-.19-.01-.39-.02-.58A8.82 8.82 0 0024 5.53a8.48 8.48 0 01-2.54.7z"
