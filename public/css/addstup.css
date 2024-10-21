@@ -49,18 +49,23 @@ select:hover,input:hover,textarea:hover{
     border: 3px solid #9c4ea4;
 }
 .form-group button {
-    padding: 10px;
-    margin: 5px;
+    height:1%;
+    width:10%;
+    padding: 12px;
+    margin: 7px;
     border: none;
     border-radius: 10px;
     background: linear-gradient(to right, #7731f0, #ef1637);
     color: white;
-    font-size: 16px;
+    font-size: 18px;
     cursor: pointer;
     transition: 0.5s;
 }
-
 .form-group button:hover {
-    padding: 15px;
+    padding: 1%;
     margin:0px;
+}
+.form-group-butn{
+    display: flex;
+    justify-content: end;
 }
