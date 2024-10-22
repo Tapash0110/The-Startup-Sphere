@@ -132,21 +132,27 @@
                     <div class="card-left">
                         <img src="https://via.placeholder.com/100" alt="Company Logo">
                         <h2><%= e.name %></h2>
-                        <p><% e.motive %></p>
+                        <p><%= e.motive %></p>
                     </div>
                     <div class="card-right">
                         <h3>Company Details</h3>
                         <div class="details">
                             <div>
-                                <p><strong>Founding Year:</strong> ${item.founded}</p>
-                                <p><strong>Funding Stage:</strong> Series A</p>
+                                <p><strong>Founding Year:</strong><%= e.founded %></p>
+                                <p><strong>Funding Stage:</strong><%= e.stage %></p>
                             </div>
                             <div>
-                                <p><strong>Company Size:</strong> ${item.size} employees</p>
-                                <p><strong>Funding Amount:</strong> ${item.funding}</p>
+                                <p><strong>Company Size:</strong><%= e.size %> employees</p>
+                                <p><strong>Funding Amount:</strong> <%= e.funding %></p>
                             </div>
                             <div>
-                                <p><strong>Industry:</strong> ${item.industry}</p>
+                                <p><strong>Industry:</strong>
+                                    <% if (e.industry!="Others") { %>
+                                        <%= e.industry %>
+                                    <% }else{ %>
+                                        <%= e.otherindustry %>
+                                    <% } %>
+                                </p>
                             </div>
                             <div>
                                 <p class="vacancies"><strong>Current Vacancies:</strong> 12 Open Positions</p>
@@ -157,7 +163,7 @@
                             <span>★★★★☆</span>
                         </div>
                         <div class="cta">
-                            <a href="${item.link}">Visit Portal</a>
+                            <a href="<%= e.link %>">Visit Portal</a>
                         </div>
                         <div class="social-media">
             
