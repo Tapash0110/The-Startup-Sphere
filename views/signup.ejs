@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The StartUp Sphere</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="images/favicon/site.webmanifest">
+</head>
+
+<body>
+    <div class="container">
+        <div class="login-container">
+            <h1>Sign up for top startups</h1>
+            <form action="/signup" method="post" id="signupform">
+                <label for="email" class="label">Enter E-Mail:</label>
+                <input type="email" class="email" name="email" placeholder="E-Mail" required>
+                <label for="username" class="label">Enter Username:</label>
+                <input type="text" placeholder="Username" class="username" name="username" required>
+                <label for="password" class="label">Enter Password:</label>
+                <input type="password" class="password" name="password" placeholder="Password" required>
+                <input type="submit" class="btn" value="Register">
+            </form>
+            <p>User of StartupSphere? <a class="inline-block bg-yellow-500 px-3 py-2 rounded-md" href="/login">Login</a></p>
+            <div class="status" id="statusdisplay"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>

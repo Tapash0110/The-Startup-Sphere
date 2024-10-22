@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The StartUp Sphere</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="images/favicon/site.webmanifest">
+</head>
+
+<body>
+    <nav class="nav" id="navbar">
+        <a href="/addstartup">
+            <div class="add-startup">
+                <span><i class="fa-solid fa-circle-plus"></i></span>
+                <span>ADD STARTUP</span>
+            </div>
+        </a>
+        <a href="/logout">
+            <div class="login">
+                <span><i class="fa-solid fa-user"></i></span>
+                <span >LOGOUT</span>
+            </div>
+        </a>
+    </nav>
+    <h1>Welcome to </h1>
+    <div class="container">
+        <span class="company-name"></span>
+    </div>
+    <h2>Track newest India-based startups funded by top investors. Powerful filters.</h2>
+    <div class="filters">
+        <div class="filer-section">
+            <form id="myform" action="/findstartup" method="post">
+                <label for="name">Comapany Name:</label>
+                <input type="text" name="name" style="width: 98%;">
+                <label for="industry">Industry:</label>
+                <select name="industry" id="industry" >
+                    <option value="" diasabled selected>Choose an industry</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Analytics">Analytics</option>
+                    <option value="Gaming">Gaming</option>
+                    <option value="Data-Science">Data Science</option>
+                    <option value="Hardware">Hardware</option>
+                    <option value="Media">Media</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Retail">Retail</option>
+                    <option value="Bio-Tech">Bio Tech</option>
+                    <option value="Consumer">Consumer</option>
+                    <option value="EdTech">EdTech</option>
+                    <option value="Collaboration">Collaboration</option>
+                    <option value="Others">Others</option>
+                </select>
+                <br>
+                <label for="size">Size:</label>
+                <select name="size" id="size">
+                    <option value="" diasabled selected>Choose a size</option>
+                    <option value="1-20">1-20 employees</option>
+                    <option value="21-50">21-50 employees</option>
+                    <option value="51-100">51-100 employees</option>
+                    <option value="101-200">101-200 employees</option>
+                    <option value="201-500">201-500 employees</option>
+                    <option value="501-1000">501-1000 employees</option>
+                    <option value="1001-5000">1001-5000 employees</option>
+                    <option value="5000+">5000+ employees</option>
+
+                </select>
+                <br>
+                <label for="founded">Founded:</label>
+                <select name="founded" id="founded">
+                    <option value="" diasabled selected>Choose a year</option>
+                    <option value="2012">2012</option>
+                    <option value="2013">2013</option>
+                    <option value="2014">2014</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                </select>
+                <br>
+                <label for="stage">Stage:</label>
+                <select name="stage" id="stage">
+                    <option value="" diasabled selected>Choose a stage</option>
+                    <option value="Pre-Seed">Pre-Seed</option>
+                    <option value="Seed">Seed</option>
+                    <option value="Series-A">Series A</option>
+                    <option value="Series-B">Series B</option>
+                    <option value="Series-C">Series C</option>
+                    <option value="Series-D">Series D</option>
+                    <option value="Post-IPO">Post-IPO</option>
+                    <option value="Others">Others</option>
+                </select>
+                <br>
+                <label for="investor">Investor:</label>
+                <select name="investor" id="investor">
+                    <option value="" diasabled selected>Choose an investor</option>
+                    <option value="Y-Combinator">Y Combinator</option>
+                    <option value="Founders-Fund">Founders Fund</option>
+                    <option value="Benchmark">Benchmark</option>
+                    <option value="Accel">Accel</option>
+                    <option value="Bessemer">Bessemer</option>
+                    <option value="Kholsa-Ventures">Khosla Ventures</option>
+                    <option value="Sequio">Sequoia</option>
+                    <option value="Others">Others</option>
+                </select>
+                <br>
+                <input type="submit" id="find_startups" value="Find Startups">
+            </form>
+        </div>
+    </div>
+    <div class="status">
+        <% if (locals.startups) { %>
+            <span id="found_card">No.of.StartUps:<%= startups.length %></span>
+        <% } %>
+    </div>
+    <div class="startup-container">
+        <% if (locals.startups) { %>
+            <% startups.forEach(e => { %>
+                <div class="card">
+                    <div class="card-left">
+                        <img src="https://via.placeholder.com/100" alt="Company Logo">
+                        <h2><%= e.name %></h2>
+                        <p><% e.motive %></p>
+                    </div>
+                    <div class="card-right">
+                        <h3>Company Details</h3>
+                        <div class="details">
+                            <div>
+                                <p><strong>Founding Year:</strong> ${item.founded}</p>
+                                <p><strong>Funding Stage:</strong> Series A</p>
+                            </div>
+                            <div>
+                                <p><strong>Company Size:</strong> ${item.size} employees</p>
+                                <p><strong>Funding Amount:</strong> ${item.funding}</p>
+                            </div>
+                            <div>
+                                <p><strong>Industry:</strong> ${item.industry}</p>
+                            </div>
+                            <div>
+                                <p class="vacancies"><strong>Current Vacancies:</strong> 12 Open Positions</p>
+                            </div>
+                        </div>
+                        <div class="rating">
+                            <strong>Rating:</strong>
+                            <span>★★★★☆</span>
+                        </div>
+                        <div class="cta">
+                            <a href="${item.link}">Visit Portal</a>
+                        </div>
+                        <div class="social-media">
+            
+                            <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30">
+                                    <path
+                                        d="M22.46 6c-.77.34-1.6.57-2.46.67a4.33 4.33 0 001.89-2.39 8.68 8.68 0 01-2.75 1.05 4.32 4.32 0 00-7.36 3.94A12.27 12.27 0 013 4.73a4.32 4.32 0 001.34 5.77 4.29 4.29 0 01-1.96-.54v.05a4.32 4.32 0 003.46 4.24 4.34 4.34 0 01-1.95.07 4.32 4.32 0 004.03 3 8.7 8.7 0 01-6.38 1.79 12.28 12.28 0 006.64 1.95c7.98 0 12.35-6.61 12.35-12.35 0-.19-.01-.39-.02-.58A8.82 8.82 0 0024 5.53a8.48 8.48 0 01-2.54.7z"
+                                        fill="#1DA1F2" />
+                                </svg>
+                            </a>
+                            <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30">
+                                    <path
+                                        d="M22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0zM7.12 20.45H3.56V9.03h3.56v11.42zm-1.78-13A2.07 2.07 0 013.27 5.3c0-1.14.92-2.07 2.07-2.07s2.07.93 2.07 2.07a2.07 2.07 0 01-2.07 2.15zM20.45 20.45h-3.56v-5.62c0-1.34-.03-3.06-1.86-3.06-1.86 0-2.14 1.46-2.14 2.96v5.72h-3.56V9.03h3.42v1.56h.05c.48-.9 1.66-1.86 3.42-1.86 3.66 0 4.34 2.41 4.34 5.55v6.17z"
+                                        fill="#0077B5" />
+                                </svg>
+                            </a>
+                            <a href="#"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30"
+                                    viewBox="0 0 50 50">
+                                    <path
+                                        d="M 5.9199219 6 L 20.582031 27.375 L 6.2304688 44 L 9.4101562 44 L 21.986328 29.421875 L 31.986328 44 L 44 44 L 28.681641 21.669922 L 42.199219 6 L 39.029297 6 L 27.275391 19.617188 L 17.933594 6 L 5.9199219 6 z M 9.7167969 8 L 16.880859 8 L 40.203125 42 L 33.039062 42 L 9.7167969 8 z"
+                                        fill="#0077B5" />
+                                </svg></a>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        <% } %>
+    </div>
+
+</body>
+
+<script src="scripts/script.js"></script>
+
+</html>

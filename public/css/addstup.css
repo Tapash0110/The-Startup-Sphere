@@ -22,7 +22,7 @@ h1{
     padding: 20px;
     border-radius: 8px;
     background-color: #ffffff;
-    width: 60%;
+    width: 80%;
     color: #000000;
     font-size: 1.5rem;
 }
@@ -33,7 +33,6 @@ label {
 
 select,input,textarea {
     width: 97%;
-    resize:none;
     padding: 8px;
     margin: 5px 0px 12px 0px;
     background-color: transparent;
@@ -48,24 +47,36 @@ select{
 select:hover,input:hover,textarea:hover{
     border: 3px solid #9c4ea4;
 }
-.form-group button {
-    height:1%;
-    width:10%;
-    padding: 12px;
-    margin: 7px;
+/* .form-group button {
+    padding: 10px;
+    margin: 5px;
     border: none;
     border-radius: 10px;
     background: linear-gradient(to right, #7731f0, #ef1637);
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
     transition: 0.5s;
 }
+
 .form-group button:hover {
-    padding: 1%;
+    padding: 15px;
     margin:0px;
+} */
+#find_startups {
+    width: 100px;
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(to right, #7731f0, #ef1637);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.5s;
 }
-.form-group-butn{
-    display: flex;
-    justify-content: end;
+
+#find_startups:hover{
+    padding: 15px;
+    margin:0px;
 }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The StartUp Sphere</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="images/favicon/site.webmanifest">
+</head>
+
+<body>
+    <div class="container">
+        <div class="login-container">
+            <h1>Sign in for top startups</h1>
+            <form action="/login" method="post" id="loginform">
+                <label for="email" class="label">Enter Email:</label>
+                <input type="email" placeholder="Email" class="email" name="email" required>
+                <label for="password" class="label">Enter Password:</label>
+                <input type="password" class="password" name="password" placeholder="Password" required>
+                <input type="submit" value="Login" class="btn">
+            </form>
+            <p>New to StartupSphere? <a class="inline-block bg-yellow-500 px-3 py-2 rounded-md" href="/signup">Sign up</a></p>
+            <div class="status" id="statusdisplay"></div>
+        </div>
+    </div>
+</body>
+
+</html>

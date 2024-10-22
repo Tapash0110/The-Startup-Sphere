@@ -1,32 +1,126 @@
-import express, { json, urlencoded } from "express";
-import cookieParser from "cookie-parser";
-// const port = process.env.PORT || 4000;
+const express=require('express');
+const app=express();
 
-import defaultroutes from './routes/default_route.js'
-import pages from './routes/pages.js'
-import api from './routes/api.js'
-import auth from './routes/authrequired.js'
+const path=require('path');
+const jwt=require('jsonwebtoken');
+const bcrypt=require('bcrypt');
+const cookieParser=require('cookie-parser');
+const addstartupModel=require('./models/addstartup');
+const userModel=require('./models/user');
 
-import { logreq } from "./middlewares/log.js";
-
-const app = express()
-const port = 3000
-
-//middleware
-app.use(express.static('public'))
-app.use(json())
-app.use(urlencoded({extended:false}))
+app.set("view engine","ejs");
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
-app.use(logreq)
+app.use(express.static(path.join(__dirname,"public")));
 
+app.get('/',function(req,res){
+    res.render('home');
+})
 
+app.get("/addstartup",isloggedin,function(req,res){
+    res.render("addstartup");
+})
 
-//routes
-app.use('/', defaultroutes)
-app.use('/pages',pages)
-app.use('/api',api)
-app.use('/auth',auth)
+app.get("/login",function(req,res){
+    res.render("login");
+})
 
-app.listen(port, () =>
-  console.log(`Example app listening on port ${port}`)
-)
+app.get("/signup",function(req,res){
+    res.render("signup");
+})
+
+app.get("/profile",isloggedin,function(req,res){
+    res.render("index");
+})
+
+app.post("/signup",async function(req,res){
+    let {username,email,password}=req.body;
+    let user1=await userModel.findOne({email});
+    if(user1) return res.send("Email already exsist");
+    let user2=await userModel.findOne({username});
+    if(user2) return res.send("Usename already exsist");
+
+    bcrypt.genSalt(12,function(err,salt){
+        bcrypt.hash(password,salt,async function(err,hash){
+            let createduser=await userModel.create({
+                username,
+                email,
+                password:hash
+            })
+
+            let token=jwt.sign({email,userid:createduser._id},"shhhhh");
+            res.cookie("token",token);
+
+            res.redirect('profile');
+        })
+    })
+})
+
+app.post('/login',async function(req,res){
+    let {email,password}=req.body;
+    let user=await userModel.findOne({email});
+    if(!user) return res.send("Something went wrong.");
+
+    bcrypt.compare(password,user.password,function(err,result){
+        if(result){
+            let token=jwt.sign({email,userid:user._id},"shhhhh");
+            res.cookie("token",token);
+            res.redirect('/profile');
+        }
+        else res.redirect('/login');
+    })
+})
+
+app.get('/logout',function(req,res){
+    res.cookie("token","");
+    res.redirect('/');
+})
+
+function isloggedin(req,res,next){
+    if(req.cookies.token===""||req.cookies.token==null){
+        res.redirect('/');
+    }
+    else{
+        let data=jwt.verify(req.cookies.token,"shhhhh");
+        next();
+    }
+}
+
+app.post('/addstartup',isloggedin,async function(req,res){
+    let {name,industry,otherindustry,size,founded,hq,stage,investor,otherinvestor,funding,motive,link}=req.body;
+    let newstartup=await addstartupModel.create({
+        name,
+        industry,
+        otherindustry,
+        size,
+        founded,
+        hq,
+        stage,
+        investor,
+        otherinvestor,
+        funding,
+        motive,
+        link
+    })
+    res.redirect('/profile');
+})
+
+app.post('/findstartup',isloggedin,async function(req,res){
+    let obj = req.body
+    let obj2 = {};
+    for (const key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+            const element = obj[key];
+            if (element != "") {
+                obj2[key] = element;
+            }
+        }
+    }
+    
+    let startups=await addstartupModel.find(obj2)
+    console.log(startups);
+    res.render('index',{startups});
+})
+
+app.listen(3000);
