@@ -199,7 +199,7 @@ async function loadd(card_list = []) {
                 <span>★★★★☆</span>
             </div>
             <div class="cta">
-                <a href="#">Visit Portal</a>
+                <a href="${item.link}">Visit Portal</a>
             </div>
             <div class="social-media">
 
