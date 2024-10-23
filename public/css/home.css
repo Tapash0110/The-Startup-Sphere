@@ -297,3 +297,115 @@ h2{
     opacity: 1;
     transform: translateY(0); /* Move to original position */
 }
+
+@media (max-width: 450px) {
+    .hero {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .hero-image {
+        width: 90%;
+        margin: 15px 0;
+    }
+
+    .startup-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 90%;
+        margin-bottom: 15px;
+        flex-direction: column;
+    }
+
+    .card-left,
+    .card-right {
+        width: 100%;
+        padding-right: 10px;
+    }
+
+    .roadmap-container {
+        padding: 10px;
+    }
+
+    .roadmap-step {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .step-content {
+        width: auto;
+    }
+}
+
+@media (min-width: 401px) and (max-width: 1200px) {
+    .hero {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-image {
+        width: 80%;
+    }
+
+    .startup-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
+    .card-left,
+    .card-right {
+        width: 100%;
+    }
+
+    .roadmap-container {
+        padding: 10px;
+    }
+
+    .roadmap-step {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .step-content {
+        width: auto;
+    }
+}
+
+@media (min-width: 1201px) and (max-width: 1024px) {
+    .hero {
+        flex-direction: row;
+    }
+
+    .hero-image {
+        width: 50%;
+    }
+
+    .startup-cards {
+        flex-direction: row;
+    }
+
+    .card {
+        width: 45%;
+        margin: 10px;
+    }
+
+    .roadmap-step {
+        flex-direction: row;
+    }
+
+    .step-content {
+        width: 80%;
+    }
+}
+
