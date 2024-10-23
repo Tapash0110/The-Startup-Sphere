@@ -27,7 +27,9 @@
                 <input type="submit" class="btn" value="Register">
             </form>
             <p>User of StartupSphere? <a class="inline-block bg-yellow-500 px-3 py-2 rounded-md" href="/login">Login</a></p>
-            <div class="status" id="statusdisplay"></div>
+            <div class="status" id="statusdisplay"><% if (locals.status) { %>
+             <p><%= status %></p>
+            <% } %></div>
         </div>
     </div>
 
