@@ -51,7 +51,7 @@ app.post("/signup",async function(req,res){
 
             let token=jwt.sign({email,userid:createduser._id},"shhhhh");
             res.cookie("token",token);
-
+ 
             res.redirect('profile');
         })
     })
