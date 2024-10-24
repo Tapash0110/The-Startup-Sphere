@@ -3,33 +3,90 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="hi.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The StartUp Sphere</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://kit.fontawesome.com/97ebf5864" crossorigin="anonymous"> </script>
     <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
     <link rel="manifest" href="images/favicon/site.webmanifest">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <title>The StartUp Sphere</title>
 </head>
 
 <body>
-    <div class="container">
-        <div class="login-container">
-            <h1>Sign in for top startups</h1>
-            <form action="/login" method="post" id="loginform">
-                <label for="email" class="label">Enter Email:</label>
-                <input type="email" placeholder="Email" class="email" name="email" required>
-                <label for="password" class="label">Enter Password:</label>
-                <input type="password" class="password" name="password" placeholder="Password" required>
-                <input type="submit" value="Login" class="btn">
-            </form>
-            <p>New to StartupSphere? <a class="inline-block bg-yellow-500 px-3 py-2 rounded-md" href="/signup">Sign up</a></p>
-            <div class="status" id="statusdisplay"><% if (locals.status) { %>
-                <p><%= status %></p>
-               <% } %></div>
+    <div class="wholebody">
+        <div class="container" id="container">
+            <div class="form-container sign-up-container">
+                <form action="/companylogin" method="post">
+                    <h1>Company Login</h1>
+                    <div class="infield">
+                        <input type="email" placeholder="Company Email" name="email" />
+                        <label></label>
+                    </div>
+                    <div class="infield">
+                        <input type="password" placeholder="Password" name="password" />
+                        <label></label>
+                    </div>
+                    <input type="submit" value="Login" class="btn">
+                    <p class="signup">New to StartupSphere?</p>
+                    <a href="/signup" class="btn">Sign Up</a>
+                    <div class="status" id="statusdisplay"><% if (locals.companystatus) { %>
+                        <p><%= companystatus %></p>
+                       <% } %>
+                    </div>
+                </form>
+            </div>
+            <div class="form-container sign-in-container">
+                <form action="/userlogin" method="post">
+                    <h1>User Login</h1>
+                    <div class="infield">
+                        <input type="email" placeholder="Email" name="email" />
+                        <label></label>
+                    </div>
+                    <div class="infield">
+                        <input type="password" placeholder="Password" name="password" />
+                        <label></label>
+                    </div>
+                    <input type="submit" value="Login" class="btn">
+                    <p class="signup">New to StartupSphere?</p>
+                    <a href="/signup" class="btn">Sign Up</a>
+                    <div class="status" id="statusdisplay"><% if (locals.userstatus) { %>
+                        <p><%= userstatus %></p>
+                       <% } %>
+                    </div>
+                </form>
+            </div>
+            <div class="overlay-container" id="overlayCon">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Welcome Back!</h1>
+                        <p>If you are a person who searching for job then</p>
+                        <button>User Login</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                        <h1>Welcome Back!</h1>
+                        <p>Do your company needs experts then</p>
+                        <button>Company Login</button>
+                    </div>
+                </div>
+                <button id="overlayBtn"></button>
+            </div>
         </div>
     </div>
+    <script>
+        const container = document.getElementById('container');
+        const overlayCon = document.getElementById('overlayCon');
+        const overlayBtn = document.getElementById('overlayBtn');
+
+        overlayBtn.addEventListener('click', () => {
+            container.classList.toggle('right-panel-active');
+        })
+    </script>
+
 </body>
 
 </html>

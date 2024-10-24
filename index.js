@@ -7,6 +7,7 @@ const bcrypt=require('bcrypt');
 const cookieParser=require('cookie-parser');
 const addstartupModel=require('./models/addstartup');
 const userModel=require('./models/user');
+const companyModel=require('./models/company');
 
 app.set("view engine","ejs");
 app.use(express.json());
@@ -43,12 +44,12 @@ app.get("/profile",isloggedin,function(req,res){
     res.render("index");
 })
 
-app.post("/signup",async function(req,res){
+app.post("/usersignup",async function(req,res){
     let {username,email,password}=req.body;
     let user1=await userModel.findOne({email});
-    if(user1) return res.render("signup",{status:"Email already exsist"});
+    if(user1) return res.render("signup",{userstatus:"Email already exsist"});
     let user2=await userModel.findOne({username});
-    if(user2) return res.render("signup",{status:"Usename already exsist"});
+    if(user2) return res.render("signup",{userstatus:"Usename already exsist"});
 
     bcrypt.genSalt(12,function(err,salt){
         bcrypt.hash(password,salt,async function(err,hash){
@@ -66,10 +67,33 @@ app.post("/signup",async function(req,res){
     })
 })
 
-app.post('/login',async function(req,res){
+app.post("/companysignup",async function(req,res){
+    let {username,email,password}=req.body;
+    let user1=await companyModel.findOne({email});
+    if(user1) return res.render("signup",{companystatus:"Email already exsist"});
+    let user2=await companyModel.findOne({username});
+    if(user2) return res.render("signup",{companystatus:"Usename already exsist"});
+
+    bcrypt.genSalt(12,function(err,salt){
+        bcrypt.hash(password,salt,async function(err,hash){
+            let createduser=await companyModel.create({
+                username,
+                email,
+                password:hash
+            })
+
+            let token=jwt.sign({email,userid:createduser._id},"shhhhh");
+            res.cookie("token",token);
+ 
+            res.redirect('profile');
+        })
+    })
+})
+
+app.post('/userlogin',async function(req,res){
     let {email,password}=req.body;
     let user=await userModel.findOne({email});
-    if(!user) return res.render("login",{status:"Email not registered try signup"});
+    if(!user) return res.render("login",{userstatus:"Email not registered try signup"});
 
     bcrypt.compare(password,user.password,function(err,result){
         if(result){
@@ -77,7 +101,22 @@ app.post('/login',async function(req,res){
             res.cookie("token",token);
             res.redirect('/profile');
         }
-        else res.render("login",{status:"password not matched"});
+        else res.render("login",{userstatus:"password not matched"});
+    })
+})
+
+app.post('/companylogin',async function(req,res){
+    let {email,password}=req.body;
+    let user=await companyModel.findOne({email});
+    if(!user) return res.render("login",{companystatus:"Email not registered try signup"});
+
+    bcrypt.compare(password,user.password,function(err,result){
+        if(result){
+            let token=jwt.sign({email,userid:user._id},"shhhhh");
+            res.cookie("token",token);
+            res.redirect('/profile');
+        }
+        else res.render("login",{companystatus:"password not matched"});
     })
 })
 
