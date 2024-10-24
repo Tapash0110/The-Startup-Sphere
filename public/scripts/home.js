@@ -57,3 +57,11 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.observe(item); 
     });
 });
+const signupdiv=document.getElementById("create_account");
+signupdiv.addEventListener("click",()=>{
+    window.location.href = "/signup";
+})
+const filter=document.getElementById("filter");
+filter.addEventListener("click",()=>{
+    window.location.href = "/profile";
+})
