@@ -5,7 +5,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: black;
+    background-image: url("https://img.freepik.com/premium-photo/black-white-image-dark-background-with-white-line_994023-194794.jpg");
     color: rgb(255, 255, 255);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
@@ -20,7 +20,7 @@ body {
 .headin{
     /* display: inline; */
     /* background-color: #fff; */
-    color:#7731f0;
+    color:#0077B5;
     padding: 1%;
     font-size: 30px;
 }
@@ -43,7 +43,7 @@ body {
  {
     margin: 2vh 1vh;
     padding: 2vh;
-    background: linear-gradient(to right, #7f40ed, #f2405a);
+    background: linear-gradient(to right, #2a38f1, #091dff);
     color: #fff;
     border-radius: 20px;
     cursor: pointer;
@@ -71,7 +71,7 @@ h2 {
 }
 
 .company-name {
-    background: linear-gradient(to right, #7f40ed, #f2405a);
+    background: linear-gradient(to right, #3a63ea, #0813eb);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -101,7 +101,7 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .filer-section {
@@ -110,7 +110,7 @@ h2 {
     border-radius: 8px;
 
     /* ADD form colour here */
-    background-color:white;
+    background-color:#9a95da   ;
     width: 90%;
     color: #000000;
     font-size: 1.5rem;
@@ -144,8 +144,21 @@ select,input {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
+
+@media (max-width: 900px) {
+    .left-flex {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for medium screens */
+    }
+}
+
+/* Responsive styles for screens smaller than 315px */
+@media (max-width: 480px) {
+    .left-flex {
+        grid-template-columns: 1fr; /* 1 column for small screens */
+    }
+}
 select:hover,input:hover {
-    border: 3px solid #9c4ea4;
+    border: 3px solid #2f08f4;
 }
 
 
@@ -202,11 +215,12 @@ display: block;
     margin: 5px;
     border: none;
     border-radius: 10px;
-    background: linear-gradient(to right, #7731f0, #ef1637);
+    background: linear-gradient(to right, #3a63ea, #0813eb);
     color: white;
     font-size: 16px;
     cursor: pointer;
     transition: 0.5s;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
 }
 
 #find_startups:hover{
