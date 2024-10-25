@@ -367,3 +367,15 @@ select:hover,input:hover {
 .vacancies {
     margin-top: 10px;
 }
+
+.cta{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 35%;
+    gap: 3px;
+}
+.cta a{
+    width: 70%;
+}

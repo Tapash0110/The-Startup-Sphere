@@ -47,6 +47,12 @@ app.get('/companypage',isloggedin,async function(req,res){
     res.render('companypage',{company});
 })
 
+app.get('/delete/:id',isloggedin,async function(req,res){
+    let startup=await addstartupModel.findOneAndDelete({_id:req.params.id}).populate("postedby");
+    let company=await companyModel.findOneAndUpdate({email:req.user.email},{$pull:{posts:startup._id}});
+    res.redirect('/companypage');
+})
+
 app.get("/addstartup", isloggedin, function (req, res) {
     res.render("addstartup");
 })
