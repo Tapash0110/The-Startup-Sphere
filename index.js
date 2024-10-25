@@ -29,9 +29,6 @@ app.get('/', function (req, res) {
     res.render('home');
 })
 
-app.get("/addstartup", isloggedin, function (req, res) {
-    res.render("addstartup");
-})
 
 app.get("/login", function (req, res) {
     res.render("login");
@@ -48,6 +45,10 @@ app.get("/profile", isloggedin, function (req, res) {
 app.get('/companypage',isloggedin,async function(req,res){
     let company=await companyModel.findOne({email:req.user.email}).populate("posts");
     res.render('companypage',{company});
+})
+
+app.get("/addstartup", isloggedin, function (req, res) {
+    res.render("addstartup");
 })
 
 app.post("/usersignup", async function (req, res) {
