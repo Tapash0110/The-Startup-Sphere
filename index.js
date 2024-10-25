@@ -17,10 +17,11 @@ app.use(express.static(path.join(__dirname, "public")));
 
 function isloggedin(req, res, next) {
     if (req.cookies.token === "" || req.cookies.token == null) {
-        res.redirect('/');
+        res.redirect('/login');
     }
     else {
         let data = jwt.verify(req.cookies.token, "shhhhh");
+        req.user=data;
         next();
     }
 }
@@ -42,6 +43,11 @@ app.get("/signup", function (req, res) {
 
 app.get("/profile", isloggedin, function (req, res) {
     res.render("index");
+})
+
+app.get('/companypage',isloggedin,async function(req,res){
+    let company=await companyModel.findOne({email:req.user.email}).populate("posts");
+    res.render('companypage',{company});
 })
 
 app.post("/usersignup", async function (req, res) {
@@ -131,6 +137,7 @@ app.get('/logout', function (req, res) {
 
 
 app.post('/addstartup', isloggedin, async function (req, res) {
+    let company=await companyModel.findOne({email:req.user.email});
     let { name, industry, otherindustry, size, founded, hq, stage, investor, otherinvestor, funding, motive, link } = req.body;
     let newstartup = await addstartupModel.create({
         name,
@@ -144,9 +151,12 @@ app.post('/addstartup', isloggedin, async function (req, res) {
         otherinvestor,
         funding,
         motive,
-        link
+        link,
+        postedby:company._id
     })
-    res.redirect('/profile');
+    company.posts.push(newstartup._id);
+    await company.save();
+    res.redirect('/companypage');
 })
 
 app.post('/findstartup', isloggedin, async function (req, res) {

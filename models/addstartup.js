@@ -13,7 +13,11 @@ const addstartupSchema=mongoose.Schema({
     otherinvestor:String,
     funding:String,
     motive:String,
-    link:String
+    link:String,
+    postedby:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'company'
+    }
 })
 
 module.exports=mongoose.model("addstartup",addstartupSchema);
