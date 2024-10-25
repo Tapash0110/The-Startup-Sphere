@@ -21,7 +21,7 @@ function isloggedin(req, res, next) {
     }
     else {
         let data = jwt.verify(req.cookies.token, "shhhhh");
-        req.user=data;
+        req.user = data;
         next();
     }
 }
@@ -42,14 +42,14 @@ app.get("/profile", isloggedin, function (req, res) {
     res.render("index");
 })
 
-app.get('/companypage',isloggedin,async function(req,res){
-    let company=await companyModel.findOne({email:req.user.email}).populate("posts");
-    res.render('companypage',{company});
+app.get('/companypage', isloggedin, async function (req, res) {
+    let company = await companyModel.findOne({ email: req.user.email }).populate("posts");
+    res.render('companypage', { company });
 })
 
-app.get('/delete/:id',isloggedin,async function(req,res){
-    let startup=await addstartupModel.findOneAndDelete({_id:req.params.id}).populate("postedby");
-    let company=await companyModel.findOneAndUpdate({email:req.user.email},{$pull:{posts:startup._id}});
+app.get('/delete/:id', isloggedin, async function (req, res) {
+    let startup = await addstartupModel.findOneAndDelete({ _id: req.params.id }).populate("postedby");
+    let company = await companyModel.findOneAndUpdate({ email: req.user.email }, { $pull: { posts: startup._id } });
     res.redirect('/companypage');
 })
 
@@ -60,9 +60,9 @@ app.get("/addstartup", isloggedin, function (req, res) {
 app.post("/usersignup", async function (req, res) {
     let { username, email, password } = req.body;
     let user1 = await userModel.findOne({ email });
-    if (user1) return res.json({status:0,error:"email"})
+    if (user1) return res.json({ status: 0, error: "email" })
     let user2 = await userModel.findOne({ username });
-    if (user2) return res.json({status:0,error:"username"})
+    if (user2) return res.json({ status: 0, error: "username" })
 
     bcrypt.genSalt(12, function (err, salt) {
         bcrypt.hash(password, salt, async function (err, hash) {
@@ -75,7 +75,7 @@ app.post("/usersignup", async function (req, res) {
             let token = jwt.sign({ email, userid: createduser._id }, "shhhhh");
             res.cookie("token", token);
 
-            res.json({status:1,error:""})
+            res.json({ status: 1, error: "" })
         })
     })
 })
@@ -83,9 +83,9 @@ app.post("/usersignup", async function (req, res) {
 app.post("/companysignup", async function (req, res) {
     let { username, email, password } = req.body;
     let user1 = await companyModel.findOne({ email });
-    if (user1) return res.json({status:0,error:"email"})
+    if (user1) return res.json({ status: 0, error: "email" })
     let user2 = await companyModel.findOne({ username });
-    if (user2) return res.json({status:0,error:"username"})
+    if (user2) return res.json({ status: 0, error: "username" })
 
     bcrypt.genSalt(12, function (err, salt) {
         bcrypt.hash(password, salt, async function (err, hash) {
@@ -98,7 +98,7 @@ app.post("/companysignup", async function (req, res) {
             let token = jwt.sign({ email, userid: createduser._id }, "shhhhh");
             res.cookie("token", token);
 
-            res.json({status:1,error:""})
+            res.json({ status: 1, error: "" })
         })
     })
 })
@@ -122,8 +122,8 @@ app.post('/userlogin', async function (req, res) {
 
 app.post('/companylogin', async function (req, res) {
     let { email, password } = req.body;
-    console.log({email,password});
-    
+    console.log({ email, password });
+
     let user = await companyModel.findOne({ email });
     if (!user) return res.json({ status: 0, error: "email" })
 
@@ -144,7 +144,7 @@ app.get('/logout', function (req, res) {
 
 
 app.post('/addstartup', isloggedin, async function (req, res) {
-    let company=await companyModel.findOne({email:req.user.email});
+    let company = await companyModel.findOne({ email: req.user.email });
     let { name, industry, otherindustry, size, founded, hq, stage, investor, otherinvestor, funding, motive, link } = req.body;
     let newstartup = await addstartupModel.create({
         name,
@@ -159,7 +159,7 @@ app.post('/addstartup', isloggedin, async function (req, res) {
         funding,
         motive,
         link,
-        postedby:company._id
+        postedby: company._id
     })
     company.posts.push(newstartup._id);
     await company.save();
@@ -177,9 +177,12 @@ app.post('/findstartup', isloggedin, async function (req, res) {
             }
         }
     }
-
-    let startups = await addstartupModel.find(obj2)
-    console.log(startups);
+    let startups;
+    if (obj2.name) {
+        startups = await addstartupModel.find({ name: { $regex: obj2.name, $options: "i" } })
+    } else {
+        startups = await addstartupModel.find(obj2)
+    }
     res.render('index', { startups });
 })
 
