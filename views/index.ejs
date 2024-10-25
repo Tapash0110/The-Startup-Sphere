@@ -17,18 +17,23 @@
 
 <body>
     <nav class="nav" id="navbar">
-        <a href="/addstartup">
-            <div class="add-startup">
-                <span><i class="fa-solid fa-circle-plus"></i></span>
-                <span>ADD STARTUP</span>
-            </div>
-        </a>
-        <a href="/logout">
-            <div class="login">
-                <span><i class="fa-solid fa-user"></i></span>
-                <span >LOGOUT</span>
-            </div>
-        </a>
+        <h2 class="headin">StartUp Sphere</h2>
+        <div></div>
+        <div class="user">
+            <div class="dropdown">
+                
+                <!-- Add user-name-initials in the button -->
+                <button onclick="myFunction()" class="dropbtn">AK</button>
+                <div id="myDropdown" class="dropdown-content">
+                
+                  <a href="#">Bookmark</a>
+                  <a href="#">Logout</a>
+                </div>
+              </div>
+            
+            
+        </div>
+        
     </nav>
     <h1>Welcome to </h1>
     <div class="container">
@@ -40,9 +45,12 @@
             <form id="myform" action="/findstartup" method="post">
                 <label for="name">Comapany Name:</label>
                 <input type="text" name="name" style="width: 98%;">
+            
+            <div class="left-flex">
+             <div class="filter-option">   
                 <label for="industry">Industry:</label>
                 <select name="industry" id="industry" >
-                    <option value="" diasabled selected>Choose an industry</option>
+                    <option value="" diasabled selected>Choose Industry</option>
                     <option value="Healthcare">Healthcare</option>
                     <option value="Analytics">Analytics</option>
                     <option value="Gaming">Gaming</option>
@@ -57,22 +65,11 @@
                     <option value="Collaboration">Collaboration</option>
                     <option value="Others">Others</option>
                 </select>
-                <br>
-                <label for="size">Size:</label>
-                <select name="size" id="size">
-                    <option value="" diasabled selected>Choose a size</option>
-                    <option value="1-20">1-20 employees</option>
-                    <option value="21-50">21-50 employees</option>
-                    <option value="51-100">51-100 employees</option>
-                    <option value="101-200">101-200 employees</option>
-                    <option value="201-500">201-500 employees</option>
-                    <option value="501-1000">501-1000 employees</option>
-                    <option value="1001-5000">1001-5000 employees</option>
-                    <option value="5000+">5000+ employees</option>
+            </div>
+            
 
-                </select>
-                <br>
-                <label for="founded">Founded:</label>
+            <div class="filter-option">    
+            <label for="founded">Founded:</label>
                 <select name="founded" id="founded">
                     <option value="" diasabled selected>Choose a year</option>
                     <option value="2012">2012</option>
@@ -89,33 +86,25 @@
                     <option value="2023">2023</option>
                     <option value="2024">2024</option>
                 </select>
-                <br>
-                <label for="stage">Stage:</label>
-                <select name="stage" id="stage">
-                    <option value="" diasabled selected>Choose a stage</option>
-                    <option value="Pre-Seed">Pre-Seed</option>
-                    <option value="Seed">Seed</option>
-                    <option value="Series-A">Series A</option>
-                    <option value="Series-B">Series B</option>
-                    <option value="Series-C">Series C</option>
-                    <option value="Series-D">Series D</option>
-                    <option value="Post-IPO">Post-IPO</option>
-                    <option value="Others">Others</option>
+            </div>
+                
+            <div class="filter-option">
+                <label for="location">Location:</label>
+                <input type="text" name="location" id="search-location">
+            </div>
+
+            <div class="filter-option">
+                <label for="Exprerience">Exprerience:</label>
+                <select name="Exprerience" id="Exprerience">
+                    <option value="Fresher">Fresher</option>
+                    <option value="1year">1+ years</option>
+                    <option value="2year">2+ years</option>
+                    <option value="3year">3+ years</option>
+                    <option value="4year">4+ years</option>
+                    <option value="5year">5+ years</option>
                 </select>
-                <br>
-                <label for="investor">Investor:</label>
-                <select name="investor" id="investor">
-                    <option value="" diasabled selected>Choose an investor</option>
-                    <option value="Y-Combinator">Y Combinator</option>
-                    <option value="Founders-Fund">Founders Fund</option>
-                    <option value="Benchmark">Benchmark</option>
-                    <option value="Accel">Accel</option>
-                    <option value="Bessemer">Bessemer</option>
-                    <option value="Kholsa-Ventures">Khosla Ventures</option>
-                    <option value="Sequio">Sequoia</option>
-                    <option value="Others">Others</option>
-                </select>
-                <br>
+            </div>
+        </div>
                 <input type="submit" id="find_startups" value="Find Startups">
             </form>
         </div>
