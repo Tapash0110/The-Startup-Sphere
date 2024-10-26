@@ -23,11 +23,14 @@
             <div class="dropdown">
                 
                 <!-- Add user-name-initials in the button -->
-                <button onclick="myFunction()" class="dropbtn">AK</button>
+                <button onclick="myFunction()" class="dropbtn"><% if(locals.user){ %>
+                    <%= user.username %>
+                    <% } %>
+                </button>
                 <div id="myDropdown" class="dropdown-content">
                 
                   <a href="#">Bookmark</a>
-                  <a href="#">Logout</a>
+                  <a href="/logout">Logout</a>
                 </div>
               </div>
             
@@ -44,7 +47,7 @@
         <div class="filer-section">
             <form id="myform" action="/findstartup" method="post">
                 <label for="name">Comapany Name:</label>
-                <input type="text" name="name" style="width: 98%;">
+                <input type="text" name="name" placeholder="Name" style="width: 98%;">
             
             <div class="left-flex">
              <div class="filter-option">   
@@ -94,8 +97,9 @@
             </div>
 
             <div class="filter-option">
-                <label for="Exprerience">Exprerience:</label>
-                <select name="Exprerience" id="Exprerience">
+                <label for="exprerience">Exprerience:</label>
+                <select name="exprerience" id="exprerience">
+                    <option value="" disabled selected>Choose your experience</option>
                     <option value="Fresher">Fresher</option>
                     <option value="1year">1+ years</option>
                     <option value="2year">2+ years</option>

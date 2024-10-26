@@ -38,8 +38,9 @@ app.get("/signup", function (req, res) {
     res.render("signup");
 })
 
-app.get("/profile", isloggedin, function (req, res) {
-    res.render("index");
+app.get("/profile", isloggedin,async function (req, res) {
+    let user=await userModel.findOne({email:req.user.email});
+    res.render("index",{user});
 })
 
 app.get('/companypage', isloggedin, async function (req, res) {
@@ -152,7 +153,7 @@ app.post('/addstartup', isloggedin, async function (req, res) {
         otherindustry,
         size,
         founded,
-        hq,
+        location,
         stage,
         investor,
         otherinvestor,
@@ -167,6 +168,7 @@ app.post('/addstartup', isloggedin, async function (req, res) {
 })
 
 app.post('/findstartup', isloggedin, async function (req, res) {
+    const user=await userModel.findOne({email:req.user.email});
     let obj = req.body
     let obj2 = {};
     for (const key in obj) {
@@ -177,13 +179,14 @@ app.post('/findstartup', isloggedin, async function (req, res) {
             }
         }
     }
+    // let startups=await addstartupModel.find(obj2);
     let startups;
     if (obj2.name) {
         startups = await addstartupModel.find({ name: { $regex: obj2.name, $options: "i" } })
     } else {
         startups = await addstartupModel.find(obj2)
     }
-    res.render('index', { startups });
+    res.render('index', { startups,user });
 })
 
 app.listen(3000);

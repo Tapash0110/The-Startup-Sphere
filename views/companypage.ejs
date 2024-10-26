@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <nav class="nav" id="navbar">
+    <!-- <nav class="nav" id="navbar">
         <a href="/addstartup">
             <div class="add-startup">
                 <span><i class="fa-solid fa-circle-plus"></i></span>
@@ -29,6 +29,27 @@
                 <span >LOGOUT</span>
             </div>
         </a>
+    </nav> -->
+    <nav class="nav" id="navbar">
+        <h2 class="headin">StartUp Sphere</h2>
+        <div></div>
+        <div class="user">
+            <div class="dropdown">
+                
+                <!-- Add user-name-initials in the button -->
+                <button onclick="myFunction()" class="dropbtn"><% if(locals.company){ %>
+                    <%= company.username %>
+                    <% } %>
+                </button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="/addstartup">Add StartUp</a>
+                    <a href="/logout">Logout</a>
+                </div>
+              </div>
+            
+            
+        </div>
+        
     </nav>
     <h1>Welcome to </h1>
     <div class="container">
