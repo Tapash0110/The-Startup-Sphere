@@ -54,6 +54,11 @@ app.get('/delete/:id', isloggedin, async function (req, res) {
     res.redirect('/companypage');
 })
 
+// app.get('/update/:id',isloggedin,async function(req,res){
+//     let startup=await addstartupModel.findOne({_id:req.params.id}).populate("postedby");
+//     res.render('update',{startup});
+// })
+
 app.get("/addstartup", isloggedin, function (req, res) {
     res.render("addstartup");
 })
@@ -146,7 +151,7 @@ app.get('/logout', function (req, res) {
 
 app.post('/addstartup', isloggedin, async function (req, res) {
     let company = await companyModel.findOne({ email: req.user.email });
-    let { name, industry, otherindustry, size, founded, hq, stage, investor, otherinvestor, funding, motive, link } = req.body;
+    let { name, industry, otherindustry, size, founded, location, stage, investor, otherinvestor, funding, motive, link } = req.body;
     let newstartup = await addstartupModel.create({
         name,
         industry,
