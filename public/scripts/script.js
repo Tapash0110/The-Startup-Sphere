@@ -1,32 +1,86 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const text = "StartUp Sphere";
-    const span = document.querySelector('.company-name');
-    let index = 0;
+  const text = "StartUp Sphere";
+  const span = document.querySelector('.company-name');
+  let index = 0;
 
-    function type() {
-        if (index < text.length) {
-            span.textContent += text.charAt(index);
-            index++;
-            setTimeout(type, 100);
-        }
+  function type() {
+    if (index < text.length) {
+      span.textContent += text.charAt(index);
+      index++;
+      setTimeout(type, 100);
     }
+  }
 
-    type();
+  type();
 });
 
+function goto(link='/'){
+  window.location.href = link;
+}
+
 function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-  }
-  
-  window.onclick = function(event) {
-    if (!event.target.matches('.dropbtn')) {
-      var dropdowns = document.getElementsByClassName("dropdown-content");
-      var i;
-      for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-          openDropdown.classList.remove('show');
-        }
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+window.onclick = function (event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
       }
     }
   }
+}
+
+const locations = [
+  "Bangalore", "Mumbai", "Delhi", "Hyderabad", "Chennai", "Pune", "Ahmedabad",
+  "Kolkata", "Surat", "Jaipur", "Lucknow", "Kanpur", "Nagpur", "Indore"
+];
+
+function filterLocations() {
+  const input = document.getElementById("search-location");
+  const dropdown = document.getElementById("location-dropdown");
+  const inputRect = input.getBoundingClientRect();
+
+  // Set the dropdown position to match the input box
+  dropdown.style.position = "absolute";
+  dropdown.style.top = `${inputRect.bottom + window.scrollY}px`;
+  dropdown.style.left = `${inputRect.left + window.scrollX}px`;
+  dropdown.style.width = `${inputRect.width}px`;
+
+  // Clear previous suggestions
+  dropdown.innerHTML = "";
+
+  const inputValue = input.value.toLowerCase();
+  if (inputValue.length === 0) {
+    dropdown.style.display = "none"; // Hide dropdown if input is empty
+    return;
+  }
+
+  // Filter locations based on input
+  const filteredLocations = locations.filter(location => location.toLowerCase().startsWith(inputValue));
+
+  // Show filtered locations
+  filteredLocations.forEach(location => {
+    const option = document.createElement("div");
+    option.classList.add("location-option");
+    option.textContent = location;
+    option.onclick = function () {
+      input.value = location;
+      dropdown.style.display = "none"; // Hide dropdown once a location is selected
+    };
+    dropdown.appendChild(option);
+  });
+
+  dropdown.style.display = filteredLocations.length ? "block" : "none";
+}
+
+// Hide dropdown if user clicks outside
+window.onclick = function (event) {
+  if (!event.target.matches('#search-location')) {
+    document.getElementById("location-dropdown").style.display = "none";
+  }
+}

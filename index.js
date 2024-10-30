@@ -25,6 +25,7 @@ function isloggedin(req, res, next) {
         next();
     }
 }
+
 app.get('/', function (req, res) {
     res.render('home');
 })
