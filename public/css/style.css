@@ -23,6 +23,7 @@ body {
     color:#0077B5;
     padding: 1%;
     font-size: 30px;
+    cursor: pointer;
 }
 
 .user{
@@ -188,6 +189,7 @@ select:hover,input:hover {
 
 .dropbtn{
     font-weight: bolder;
+    cursor: pointer;
 }
   
 .dropdown {

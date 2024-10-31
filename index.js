@@ -8,6 +8,8 @@ const cookieParser = require('cookie-parser');
 const addstartupModel = require('./models/addstartup');
 const userModel = require('./models/user');
 const companyModel = require('./models/company');
+const data = require('./models/data');
+const { findOne } = require('./models/data');
 
 app.set("view engine", "ejs");
 app.use(express.json());
@@ -39,9 +41,9 @@ app.get("/signup", function (req, res) {
     res.render("signup");
 })
 
-app.get("/profile", isloggedin,async function (req, res) {
-    let user=await userModel.findOne({email:req.user.email});
-    res.render("index",{user});
+app.get("/profile", isloggedin, async function (req, res) {
+    let user = await userModel.findOne({ email: req.user.email });
+    res.render("index", { user });
 })
 
 app.get('/companypage', isloggedin, async function (req, res) {
@@ -86,11 +88,11 @@ app.post("/usersignup", async function (req, res) {
         })
     })
 })
-app.post("/bookmarks",isloggedin,async function (req,res) {
-    const {id}=req.body;
+app.post("/bookmarks", isloggedin, async function (req, res) {
+    const { id } = req.body;
     console.log(id);
-    
-    res.json({status:1});
+
+    res.json({ status: 1 });
 })
 app.post("/companysignup", async function (req, res) {
     let { username, email, password } = req.body;
@@ -173,33 +175,48 @@ app.post('/addstartup', isloggedin, async function (req, res) {
         link,
         postedby: company._id
     })
+    let impdata = await data.findOne();
+    console.log(impdata);
+
+    if (!impdata)
+        impdata = await data.create({ location });
+    else
+        impdata.location.push(location);
+    console.log(impdata);
+    await impdata.save();
+
     company.posts.push(newstartup._id);
     await company.save();
     res.redirect('/companypage');
 })
 
 app.post('/findstartup', isloggedin, async function (req, res) {
-    const user=await userModel.findOne({email:req.user.email});
+    const user = await userModel.findOne({ email: req.user.email });
     let obj = req.body
-    let obj2 = {};
+    console.log(obj);
+
     for (const key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key)) {
-            const element = obj[key];
-            if (element != "") {
-                obj2[key] = element;
-            }
+        if (obj[key] === "") {
+            delete obj[key];
         }
     }
     // let startups=await addstartupModel.find(obj2);
-    console.log(obj2);
-    
+    console.log(obj);
+
     let startups;
-    if (obj2.name) {
-        startups = await addstartupModel.find({ name: { $regex: obj2.name, $options: "i" } })
+    if (obj.name) {
+        startups = await addstartupModel.find({ name: { $regex: obj.name, $options: "i" } })
     } else {
-        startups = await addstartupModel.find(obj2)
+        startups = await addstartupModel.find(obj)
     }
-    res.render('index', { startups,user });
+    res.render('index', { startups, user });
 })
+app.get("/getdata", isloggedin,async function (req, res) {
+    let impdata=await data.findOne()
+    console.log(impdata.location);
+    
+    res.json(impdata);
+})
+
 
 app.listen(3000);

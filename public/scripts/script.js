@@ -35,10 +35,23 @@ window.onclick = function (event) {
   }
 }
 
-const locations = [
-  "Bangalore", "Mumbai", "Delhi", "Hyderabad", "Chennai", "Pune", "Ahmedabad",
-  "Kolkata", "Surat", "Jaipur", "Lucknow", "Kanpur", "Nagpur", "Indore"
-];
+
+
+// const locations = [
+//   "Bangalore", "Mumbai", "Delhi", "Hyderabad", "Chennai", "Pune", "Ahmedabad",
+//   "Kolkata", "Surat", "Jaipur", "Lucknow", "Kanpur", "Nagpur", "Indore"
+// ];
+let locations;
+async function load() {
+  const a = await fetch("/getdata", {
+    method: "GET",
+  })
+  let b = await a.json();
+  locations=b.location;
+  console.log(locations);
+}
+load();
+
 
 function filterLocations() {
   const input = document.getElementById("search-location");
