@@ -17,11 +17,10 @@
 
 <body>
     <nav class="nav" id="navbar">
-        <h2 class="headin" onclick="goto('/')">StartUp Sphere</h2>
+        <h2 class="headin">StartUp Sphere</h2>
         <div></div>
         <div class="user">
             <div class="dropdown">
-
                 <!-- Add user-name-initials in the button -->
                 <button onclick="myFunction()" class="dropbtn">
                     <% if(locals.user){ %>
@@ -30,7 +29,7 @@
                 </button>
                 <div id="myDropdown" class="dropdown-content">
 
-                    <a href="/bookmarkpage">Bookmark</a>
+                    <a href="/index">Home</a>
                     <a href="/logout">Logout</a>
                 </div>
             </div>
@@ -41,78 +40,6 @@
         <span class="company-name"></span>
     </div>
     <h2>Track newest India-based startups funded by top investors. Powerful filters.</h2>
-    <div class="filters">
-        <div class="filer-section">
-            <form id="myform" action="/findstartup" method="post">
-                <label for="name">Comapany Name:</label>
-                <input type="text" name="name" placeholder="Name" style="width: 98%;" autocomplete="off">
-
-                <div class="left-flex">
-                    <div class="filter-option">
-                        <label for="industry">Industry:</label>
-                        <select name="industry" id="industry">
-                            <option value="" diasabled selected>Choose Industry</option>
-                            <option value="Healthcare">Healthcare</option>
-                            <option value="Analytics">Analytics</option>
-                            <option value="Gaming">Gaming</option>
-                            <option value="Data-Science">Data Science</option>
-                            <option value="Hardware">Hardware</option>
-                            <option value="Media">Media</option>
-                            <option value="Marketing">Marketing</option>
-                            <option value="Retail">Retail</option>
-                            <option value="Bio-Tech">Bio Tech</option>
-                            <option value="Consumer">Consumer</option>
-                            <option value="EdTech">EdTech</option>
-                            <option value="Collaboration">Collaboration</option>
-                            <option value="Others">Others</option>
-                        </select>
-                    </div>
-
-
-                    <div class="filter-option">
-                        <label for="founded">Founded:</label>
-                        <select name="founded" id="founded">
-                            <option value="" diasabled selected>Choose a year</option>
-                            <option value="2012">2012</option>
-                            <option value="2013">2013</option>
-                            <option value="2014">2014</option>
-                            <option value="2015">2015</option>
-                            <option value="2016">2016</option>
-                            <option value="2017">2017</option>
-                            <option value="2018">2018</option>
-                            <option value="2019">2019</option>
-                            <option value="2020">2020</option>
-                            <option value="2021">2021</option>
-                            <option value="2022">2022</option>
-                            <option value="2023">2023</option>
-                            <option value="2024">2024</option>
-                        </select>
-                    </div>
-
-                    <div class="filter-option">
-                        <label for="location">Location:</label>
-                        <input type="text" name="location" id="search-location" onkeyup="filterLocations()"
-                            autocomplete="off">
-                        <div id="location-dropdown" class="dropdown-content"></div>
-                    </div>
-
-            <div class="filter-option">
-                <label for="Exprerience">Exprerience:</label>
-                <select name="Exprerience" id="Exprerience">
-                    <option value="" diasabled selected>Choose Exprerience</option>
-                    <option value="Fresher">Fresher</option>
-                    <option value="1year">1+ years</option>
-                    <option value="2year">2+ years</option>
-                    <option value="3year">3+ years</option>
-                    <option value="4year">4+ years</option>
-                    <option value="5year">5+ years</option>
-                </select>
-            </div>
-        </div>
-                <input type="submit" id="find_startups" value="Find Startups">
-            </form>
-        </div>
-    </div>
     <div class="status">
         <% if (locals.startups) { %>
             <span id="found_card">No.of.StartUps:<%= startups.length %></span>
@@ -133,20 +60,6 @@
                     </div>
                     <div class="card-right">
                         <h3>Company Details</h3>
-                        <!-- <div>☆</div> -->
-                        <div>
-                            <a href="/bookmark/<%= e._id %>">
-                                <% if (e.bookmarkedby.indexOf(user._id)===-1) { %>
-                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 50 50">
-                                    <path d="M 12.8125 2 C 12.335938 2.089844 11.992188 2.511719 12 3 L 12 47 C 11.996094 47.359375 12.1875 47.691406 12.496094 47.871094 C 12.804688 48.054688 13.1875 48.054688 13.5 47.875 L 25 41.15625 L 36.5 47.875 C 36.8125 48.054688 37.195313 48.054688 37.503906 47.871094 C 37.8125 47.691406 38.003906 47.359375 38 47 L 38 3 C 38 2.449219 37.550781 2 37 2 L 13 2 C 12.96875 2 12.9375 2 12.90625 2 C 12.875 2 12.84375 2 12.8125 2 Z M 14 4 L 36 4 L 36 45.25 L 25.5 39.125 C 25.191406 38.945313 24.808594 38.945313 24.5 39.125 L 14 45.25 Z"></path>
-                                    </svg>
-                                <% }else{ %>
-                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 50 50">
-                                    <path d="M 37 48 C 36.824219 48 36.652344 47.953125 36.496094 47.863281 L 25 41.15625 L 13.503906 47.863281 C 13.195313 48.042969 12.8125 48.046875 12.503906 47.867188 C 12.191406 47.6875 12 47.359375 12 47 L 12 3 C 12 2.449219 12.449219 2 13 2 L 37 2 C 37.554688 2 38 2.449219 38 3 L 38 47 C 38 47.359375 37.808594 47.6875 37.496094 47.867188 C 37.34375 47.957031 37.171875 48 37 48 Z"></path>
-                                    </svg>
-                                <% } %>
-                            </a>
-                        </div>
                         <div class="details">
                             <div>
                                 <p><strong>Founding Year:</strong>

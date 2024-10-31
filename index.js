@@ -46,6 +46,12 @@ app.get("/profile", isloggedin, async function (req, res) {
     res.render("index", { user });
 })
 
+app.get('/bookmarkpage',isloggedin,async function(req,res){
+    let user=await userModel.findOne({email:req.user.email});
+    let startups=await addstartupModel.find({_id:{$in:user.bookmark}});
+    res.render('bookmarkpage',{user,startups});
+})
+
 app.get('/companypage', isloggedin, async function (req, res) {
     let company = await companyModel.findOne({ email: req.user.email }).populate("posts");
     res.render('companypage', { company });
@@ -55,6 +61,22 @@ app.get('/delete/:id', isloggedin, async function (req, res) {
     let startup = await addstartupModel.findOneAndDelete({ _id: req.params.id }).populate("postedby");
     let company = await companyModel.findOneAndUpdate({ email: req.user.email }, { $pull: { posts: startup._id } });
     res.redirect('/companypage');
+})
+
+app.get('/bookmark/:id',isloggedin,async function(req,res){
+    let user=await userModel.findOne({email:req.user.email});
+    let startup=await addstartupModel.findOne({_id:req.params.id});
+    if(user.bookmark.indexOf(startup._id)===-1){
+        user.bookmark.push(startup._id);
+        startup.bookmarkedby.push(user._id);
+    }
+    else{
+        user.bookmark.splice(user.bookmark.indexOf(startup._id),1);
+        startup.bookmarkedby.splice(startup.bookmarkedby.indexOf(user._id),1);
+    }
+    await user.save();
+    await startup.save();
+    res.redirect('/profile');
 })
 
 // app.get('/update/:id',isloggedin,async function(req,res){
@@ -200,9 +222,12 @@ app.post('/findstartup', isloggedin, async function (req, res) {
             delete obj[key];
         }
     }
+<<<<<<< Updated upstream
     // let startups=await addstartupModel.find(obj2);
     console.log(obj);
 
+=======
+>>>>>>> Stashed changes
     let startups;
     if (obj.name) {
         startups = await addstartupModel.find({ name: { $regex: obj.name, $options: "i" } })
