@@ -18,7 +18,11 @@ const addstartupSchema=mongoose.Schema({
     postedby:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'company'
-    }
+    },
+    bookmarkedby: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
+    }]
 })
 
 module.exports=mongoose.model("addstartup",addstartupSchema);

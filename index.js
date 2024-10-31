@@ -86,7 +86,12 @@ app.post("/usersignup", async function (req, res) {
         })
     })
 })
-
+app.post("/bookmarks",isloggedin,async function (req,res) {
+    const {id}=req.body;
+    console.log(id);
+    
+    res.json({status:1});
+})
 app.post("/companysignup", async function (req, res) {
     let { username, email, password } = req.body;
     let user1 = await companyModel.findOne({ email });
@@ -186,6 +191,8 @@ app.post('/findstartup', isloggedin, async function (req, res) {
         }
     }
     // let startups=await addstartupModel.find(obj2);
+    console.log(obj2);
+    
     let startups;
     if (obj2.name) {
         startups = await addstartupModel.find({ name: { $regex: obj2.name, $options: "i" } })

@@ -99,19 +99,19 @@
                         <div id="location-dropdown" class="dropdown-content"></div>
                     </div>
 
-                    <div class="filter-option">
-                        <label for="exprerience">Exprerience:</label>
-                        <select name="exprerience" id="exprerience">
-                            <option value="" disabled selected>Choose your experience</option>
-                            <option value="Fresher">Fresher</option>
-                            <option value="1year">1+ years</option>
-                            <option value="2year">2+ years</option>
-                            <option value="3year">3+ years</option>
-                            <option value="4year">4+ years</option>
-                            <option value="5year">5+ years</option>
-                        </select>
-                    </div>
-                </div>
+            <div class="filter-option">
+                <label for="Exprerience">Exprerience:</label>
+                <select name="Exprerience" id="Exprerience">
+                    <option value="" diasabled selected>Choose Exprerience</option>
+                    <option value="Fresher">Fresher</option>
+                    <option value="1year">1+ years</option>
+                    <option value="2year">2+ years</option>
+                    <option value="3year">3+ years</option>
+                    <option value="4year">4+ years</option>
+                    <option value="5year">5+ years</option>
+                </select>
+            </div>
+        </div>
                 <input type="submit" id="find_startups" value="Find Startups">
             </form>
         </div>
@@ -136,6 +136,7 @@
                     </div>
                     <div class="card-right">
                         <h3>Company Details</h3>
+                        <div onclick="bookmark('<%= e.id %>')">☆</div>
                         <div class="details">
                             <div>
                                 <p><strong>Founding Year:</strong>
