@@ -32,11 +32,11 @@ label {
 }
 
 select,input,textarea {
-    color: #000000;
+    color: #fafafa;
     width: 97%;
     padding: 8px;
     margin: 5px 0px 12px 0px;
-    background-color: transparent;
+    background-color: #061218;
     border: 3px solid #b7b3b3;
     border-radius: 10px;
     font-size: 1.2rem;
