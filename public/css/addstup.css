@@ -3,6 +3,7 @@ body{
     margin: 0;
     background-image: url("https://img.freepik.com/premium-photo/black-white-image-dark-background-with-white-line_994023-194794.jpg");
 }
+
 h1{
     background: linear-gradient(to right,#3a63ea, #313bf7);
     -webkit-background-clip: text; 
@@ -11,11 +12,13 @@ h1{
     font-weight: bolder; 
     text-align: center;
 }
+
 .forms{
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .form-container{
     border: 1px solid #ccc; 
     padding: 20px;
@@ -26,6 +29,7 @@ h1{
     font-family: 'Courier New', Courier, monospace;
     margin-bottom: 15px;
 }
+
 label {
     font-weight: 700;
     margin: 8px 4px;
@@ -43,28 +47,15 @@ select,input,textarea {
     transition: 0.1s;
     resize: none;
 }
+
 select{
     width: 99%;
 }
+
 select:hover,input:hover,textarea:hover{
     border: 3px solid #8772f1;
 }
-/* .form-group button {
-    padding: 10px;
-    margin: 5px;
-    border: none;
-    border-radius: 10px;
-    background: linear-gradient(to right, #7731f0, #ef1637);
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.5s;
-}
 
-.form-group button:hover {
-    padding: 15px;
-    margin:0px;
-} */
 #find_startups {
     width: 100px;
     padding: 10px;

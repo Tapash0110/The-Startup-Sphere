@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
 }
+
 body {
     margin: 0;
     padding: 0;
@@ -13,13 +14,11 @@ body {
 .nav {
     display: grid;
     align-items: center;
-    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-columns: 4fr 10fr 1fr;
     background-color: #1C1C1C;
 }
 
 .headin{
-    /* display: inline; */
-    /* background-color: #fff; */
     color:#0077B5;
     padding: 1%;
     font-size: 30px;
@@ -29,19 +28,17 @@ body {
 .user{
     padding:1vh;
     display: flex;
-    /* align-items: flex-end; */
     justify-content: end;
     gap:10px;
 
     background-color: #1C1C1C;
 }
+
 .user-icon{
     padding-right: 16px;
 }
 
-
-.add-startup
- {
+.add-startup{
     margin: 2vh 1vh;
     padding: 2vh;
     background: linear-gradient(to right, #2a38f1, #091dff);
@@ -109,17 +106,12 @@ h2 {
     border: 1px solid #203c4e;
     padding: 20px;
     border-radius: 8px;
-
-    /* ADD form colour here */
     background-color:#061218  ;
     width: 90%;
     color: #6cafff;
     font-size: 1.5rem;
 }
 .filter-option{
-    /* background-color: blue; */
-    /* border:1px solid black; */
-    /* width:25%; */
     display: flex;
     flex-direction: column;
     width:90%;
@@ -164,7 +156,6 @@ select,input {
 }
 
 .left-flex{
-    /* background-color: #000000; */
     width:100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -182,10 +173,10 @@ select,input {
         grid-template-columns: 1fr; /* 1 column for small screens */
     }
 }
+
 select:hover,input:hover {
     border: 3px solid #2f08f4;
 }
-
 
 .dropbtn{
     font-weight: bolder;
@@ -238,8 +229,6 @@ border-radius: inherit;
     display:block;
 }
 
-
-
 #find_startups {
     width: 130px;
     padding: 12px;
@@ -271,9 +260,6 @@ border-radius: inherit;
 .startup-container {
     width: 90%;
     margin: 20px auto;
-    /* display: flex;
-    flex-wrap: wrap;
-    justify-content:space-evenly; */
     display: grid;
     justify-items: center;
     flex-grow: 1;
@@ -287,8 +273,6 @@ border-radius: inherit;
     border-radius: 20px;
     margin-bottom: 5vw;
     opacity: 0;
-    /* transform: translateY(50px); */
-    /* transition: opacity 0.6s ease-out, transform 0.6s ease-out; */
 }
 
 

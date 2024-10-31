@@ -88,8 +88,8 @@
         })
         const userlogin = document.getElementById('userlogin');
         const companylogin = document.getElementById('companylogin');
-        const displayuser=document.getElementById("userdisplay")
-        const displaycompany=document.getElementById("companydisplay")
+        const displayuser = document.getElementById("userdisplay")
+        const displaycompany = document.getElementById("companydisplay")
 
         userlogin.addEventListener("submit", async (e) => {
             e.preventDefault();
@@ -106,7 +106,7 @@
                 body: JSON.stringify(data),
             })
             let b = await a.json();
-            
+
             if (b.status === 1) {
                 displayuser.innerHTML = "login successful";
                 setTimeout(function () {
@@ -114,9 +114,9 @@
                 }, 1000);
             } else {
                 if (b.error == "email")
-                displayuser.innerHTML = "Email not registered try signup";
+                    displayuser.innerHTML = "Email not registered try signup";
                 else
-                displayuser.innerHTML = "Wrong password";
+                    displayuser.innerHTML = "Wrong password";
             }
         });
 
@@ -136,8 +136,8 @@
             })
             let b = await a.json();
             console.log(b);
-            
-            
+
+
             if (b.status === 1) {
                 displaycompany.innerHTML = "login successful";
                 setTimeout(function () {
@@ -145,9 +145,9 @@
                 }, 1000);
             } else {
                 if (b.error == "email")
-                displaycompany.innerHTML = "Email not registered try signup";
+                    displaycompany.innerHTML = "Email not registered try signup";
                 else
-                displaycompany.innerHTML = "Wrong password";
+                    displaycompany.innerHTML = "Wrong password";
             }
         });
     </script>

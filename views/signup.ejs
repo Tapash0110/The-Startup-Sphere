@@ -32,15 +32,18 @@
                         <label></label>
                     </div>
                     <div class="infield">
-                        <input type="password" placeholder="Password" name="password" required/>
+                        <input type="password" placeholder="Password" name="password" required />
                         <label></label>
                     </div>
                     <input type="submit" value="SignUp" class="btn">
                     <p class="signup">User of StartupSphere?</p>
                     <a href="/login" class="btn">Login</a>
-                    <div class="status" id="companydisplay"><% if (locals.companystatus) { %>
-                        <p><%= companystatus %></p>
-                       <% } %>
+                    <div class="status" id="companydisplay">
+                        <% if (locals.companystatus) { %>
+                            <p>
+                                <%= companystatus %>
+                            </p>
+                            <% } %>
                     </div>
                 </form>
             </div>
@@ -48,7 +51,7 @@
                 <form action="/usersignup" id="usersignup" method="post">
                     <h1>User SignUp</h1>
                     <div class="infield">
-                        <input type="email" placeholder="Email" name="email" required/>
+                        <input type="email" placeholder="Email" name="email" required />
                         <label></label>
                     </div>
                     <div class="infield">
@@ -56,15 +59,18 @@
                         <label></label>
                     </div>
                     <div class="infield">
-                        <input type="password" placeholder="Password" name="password" required/>
+                        <input type="password" placeholder="Password" name="password" required />
                         <label></label>
                     </div>
                     <input type="submit" value="SignUp" class="btn">
                     <p class="signup">User of StartupSphere?</p>
                     <a href="/login" class="btn">Login</a>
-                    <div class="status" id="userdisplay"><% if (locals.userstatus) { %>
-                        <p><%= userstatus %></p>
-                       <% } %>
+                    <div class="status" id="userdisplay">
+                        <% if (locals.userstatus) { %>
+                            <p>
+                                <%= userstatus %>
+                            </p>
+                            <% } %>
                     </div>
                 </form>
             </div>
@@ -95,8 +101,8 @@
         })
         const usersignup = document.getElementById('usersignup');
         const companysignup = document.getElementById('companysignup');
-        const displayuser=document.getElementById("userdisplay")
-        const displaycompany=document.getElementById("companydisplay")
+        const displayuser = document.getElementById("userdisplay")
+        const displaycompany = document.getElementById("companydisplay")
 
         usersignup.addEventListener("submit", async (e) => {
             e.preventDefault();
@@ -113,7 +119,7 @@
                 body: JSON.stringify(data),
             })
             let b = await a.json();
-            
+
             if (b.status === 1) {
                 displayuser.innerHTML = "signup successful";
                 setTimeout(function () {
@@ -121,9 +127,9 @@
                 }, 1000);
             } else {
                 if (b.error == "email")
-                displayuser.innerHTML = "Email already registered try login";
+                    displayuser.innerHTML = "Email already registered try login";
                 else
-                displayuser.innerHTML = "username already exist";
+                    displayuser.innerHTML = "username already exist";
             }
         });
 
@@ -143,8 +149,8 @@
             })
             let b = await a.json();
             console.log(b);
-            
-            
+
+
             if (b.status === 1) {
                 displaycompany.innerHTML = "signup successful";
                 setTimeout(function () {
@@ -152,9 +158,9 @@
                 }, 1000);
             } else {
                 if (b.error == "email")
-                displaycompany.innerHTML = "Email already registered try login";
+                    displaycompany.innerHTML = "Email already registered try login";
                 else
-                displaycompany.innerHTML = "username already exist";
+                    displaycompany.innerHTML = "username already exist";
             }
         });
     </script>

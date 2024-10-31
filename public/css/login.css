@@ -2,6 +2,7 @@
     padding: 0px;
     margin: 0px;
 }
+
 .fixim{
     position: fixed;
     z-index: -99;
@@ -41,15 +42,16 @@
     padding: 0px 40px;
     transition: all 0.6s ease in ease-in-out;
 }
+
 .sign-up-container{
     opacity: 0;
     z-index: 1;
 }
+
 .sign-in-container{
     z-index: 2;
 }
     
-
 form{
     height: 100%;
     display: flex;
@@ -80,6 +82,7 @@ input{
     border: none;
     outline: none;
 }
+
 *label{
     position: absolute;
     left: 50%;
@@ -90,15 +93,18 @@ input{
     background: var(--linear-grad);
     transition: 0.3s;
 }
+
 input:focus ~ label{
     width: 100%;
 }
+
 a{
     color: #FFF;
     font-size: 14px;
     text-decoration: none;
     margin: 15px 0px;
 }
+
 button,.btn{
     border-radius: 20px;
     border: 1px solid var(--grad-clr1);
@@ -110,21 +116,26 @@ button,.btn{
     letter-spacing: 1px;
     text-transform: uppercase;
 }
+
 .form-container .btn{
     margin-top: 17px;
     transition: 80ms ease-in;
 }
+
 .form-container .btn:hover{
     background-color: #FFF;
     color: var(--grad-clr1);
 }
+
 .signup{
     display: inline-block;
     margin: 50px 0 0 0;
 }
+
 .signup button{
     display: block;
 }
+
 .overlay-container{
     position: absolute;
     top: 0;
@@ -135,6 +146,7 @@ button,.btn{
     transition: transform 0.6s ease-in-out;
     z-index: 9;
 }
+
 #overlayBtn{
     cursor: pointer;
     position: absolute;
@@ -148,6 +160,7 @@ button,.btn{
     background: transparent;
     border-radius: 20px;
 }
+
 .overlay{
     position: relative;
     background: var(--linear-grad);
@@ -157,6 +170,7 @@ button,.btn{
     width: 250%;
     transition: transform 0.6s ease ease-in-out;
 }
+
 .overlay-panel{
     position: absolute;
     display: flex;
@@ -169,18 +183,22 @@ button,.btn{
     width: 340px;
     transition: 0.6s ease ease-in-out;
 }
+
 .overlay-left{
     right: 57.5%;
     top: 5px;
     transform: translateX(-40%);
 }
+
 .overlay-right{
     right: 0;
     transform: translate(9.5%,2%);
 }
+
 .overlay-panel h1{
     color: #FFF;
 }
+
 p{
     font-size: 14px;
     font-weight: 300;
@@ -188,34 +206,42 @@ p{
     letter-spacing: 0.5px;
     margin: 25px 0px 35px;
 }
+
 .overlay-panel button{
     border: none;
     background-color: transparent;
-}   
+}  
+
 .right-panel-active .overlay-container{
     transform: translateX(-150%);
 }
+
 .right-panel-active .overlay{
     transform: translateX(50%);
 }
+
 .right-panel-active .overlay-left{
     transform: translateX(25%);
 }
+
 .right-panel-active .overlay-right{
     transform: translateX(35%);
 }
+
 .right-panel-active .sign-in-container{
     transform: translateX(88.7%);
     opacity: 1;
     z-index: -2;
     
 }
+
 .right-panel-active .sign-up-container{
     transform: translateX(90%);
     opacity: 1;
     z-index: 20;
     animation: show 0.6s;
 }
+
 @keyframes show {
     0%, 50%{
         opaacity:0;

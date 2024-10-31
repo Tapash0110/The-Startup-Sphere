@@ -32,7 +32,6 @@ app.get('/', function (req, res) {
     res.render('home');
 })
 
-
 app.get("/login", function (req, res) {
     res.render("login");
 })
@@ -110,12 +109,6 @@ app.post("/usersignup", async function (req, res) {
         })
     })
 })
-app.post("/bookmarks", isloggedin, async function (req, res) {
-    const { id } = req.body;
-    console.log(id);
-
-    res.json({ status: 1 });
-})
 app.post("/companysignup", async function (req, res) {
     let { username, email, password } = req.body;
     let user1 = await companyModel.findOne({ email });
@@ -178,10 +171,9 @@ app.get('/logout', function (req, res) {
     res.redirect('/');
 })
 
-
 app.post('/addstartup', isloggedin, async function (req, res) {
     let company = await companyModel.findOne({ email: req.user.email });
-    let { name, industry, otherindustry, size, founded, location, stage, investor, otherinvestor, funding, motive, link } = req.body;
+    let { name, industry, otherindustry, size, founded, location, experience , stage , motive, websitelink , maplink , linkedinlink , twitterlink , imagelink } = req.body;
     let newstartup = await addstartupModel.create({
         name,
         industry,
@@ -190,20 +182,24 @@ app.post('/addstartup', isloggedin, async function (req, res) {
         founded,
         location,
         stage,
-        investor,
-        otherinvestor,
-        funding,
+        experience,
         motive,
-        link,
+        websitelink,
+        maplink,
+        linkedinlink,
+        twitterlink,
+        imagelink,
         postedby: company._id
     })
     let impdata = await data.findOne();
     console.log(impdata);
 
-    if (!impdata)
+    if (!impdata){
         impdata = await data.create({ location });
-    else
+    }
+    else{
         impdata.location.push(location);
+    }
     console.log(impdata);
     await impdata.save();
 
@@ -222,12 +218,6 @@ app.post('/findstartup', isloggedin, async function (req, res) {
             delete obj[key];
         }
     }
-<<<<<<< Updated upstream
-    // let startups=await addstartupModel.find(obj2);
-    console.log(obj);
-
-=======
->>>>>>> Stashed changes
     let startups;
     if (obj.name) {
         startups = await addstartupModel.find({ name: { $regex: obj.name, $options: "i" } })
@@ -236,12 +226,10 @@ app.post('/findstartup', isloggedin, async function (req, res) {
     }
     res.render('index', { startups, user });
 })
+
 app.get("/getdata", isloggedin,async function (req, res) {
     let impdata=await data.findOne()
-    console.log(impdata.location);
-    
     res.json(impdata);
 })
-
 
 app.listen(3000);
