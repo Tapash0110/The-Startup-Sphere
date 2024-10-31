@@ -86,12 +86,6 @@ app.post("/usersignup", async function (req, res) {
         })
     })
 })
-app.post("/bookmarks",isloggedin,async function (req,res) {
-    const {id}=req.body;
-    console.log(id);
-    
-    res.json({status:1});
-})
 app.post("/companysignup", async function (req, res) {
     let { username, email, password } = req.body;
     let user1 = await companyModel.findOne({ email });
