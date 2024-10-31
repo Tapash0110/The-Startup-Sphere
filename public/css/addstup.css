@@ -1,11 +1,10 @@
-*{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
 body{
-   background-color: black; 
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin: 0;
+    background-image: url("https://img.freepik.com/premium-photo/black-white-image-dark-background-with-white-line_994023-194794.jpg");
 }
 h1{
-    background: linear-gradient(to right,#7f40ed, #f2405a);
+    background: linear-gradient(to right,#3a63ea, #313bf7);
     -webkit-background-clip: text; 
     background-clip: text; 
     color: transparent;
@@ -21,10 +20,11 @@ h1{
     border: 1px solid #ccc; 
     padding: 20px;
     border-radius: 8px;
-    background-color: #ffffff;
     width: 80%;
-    color: #000000;
+    color: #6cafff;
     font-size: 1.5rem;
+    font-family: 'Courier New', Courier, monospace;
+    margin-bottom: 15px;
 }
 label {
     font-weight: 700;
@@ -32,6 +32,7 @@ label {
 }
 
 select,input,textarea {
+    color: #fff;
     width: 97%;
     padding: 8px;
     margin: 5px 0px 12px 0px;
@@ -46,7 +47,7 @@ select{
     width: 99%;
 }
 select:hover,input:hover,textarea:hover{
-    border: 3px solid #9c4ea4;
+    border: 3px solid #8772f1;
 }
 /* .form-group button {
     padding: 10px;
@@ -70,7 +71,7 @@ select:hover,input:hover,textarea:hover{
     margin: 5px;
     border: none;
     border-radius: 10px;
-    background: linear-gradient(to right, #7731f0, #ef1637);
+    background: linear-gradient(to right, #3a63ea, #0813eb);
     color: white;
     font-size: 16px;
     cursor: pointer;
