@@ -149,6 +149,7 @@ select,input {
 .location-option {
     padding: 8px 12px;
     cursor: pointer;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .location-option:hover {

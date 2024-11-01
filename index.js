@@ -203,8 +203,8 @@ app.post('/addstartup', isloggedin, async function (req, res) {
     console.log(impdata);
     await impdata.save();
 
-    company.posts.push(newstartup._id);
-    await company.save();
+    // company.posts.push(newstartup._id);
+    // await company.save();
     res.redirect('/companypage');
 })
 

@@ -28,6 +28,7 @@ h1{
     font-size: 1.5rem;
     font-family: 'Courier New', Courier, monospace;
     margin-bottom: 15px;
+    background-color: #061218;
 }
 
 label {
@@ -72,4 +73,28 @@ select:hover,input:hover,textarea:hover{
 #find_startups:hover{
     padding: 15px;
     margin:0px;
+}
+
+#location-dropdown {
+    display: none;
+    background-color: #061218;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1;
+    border: 3px solid #203c4e;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-top: 2px;
+    box-sizing: border-box;
+}
+
+.location-option {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.location-option:hover {
+    background-color: #1967d2;
 }
