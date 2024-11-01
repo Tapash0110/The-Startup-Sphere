@@ -45,10 +45,10 @@ app.get("/profile", isloggedin, async function (req, res) {
     res.render("index", { user });
 })
 
-app.get('/bookmarkpage',isloggedin,async function(req,res){
-    let user=await userModel.findOne({email:req.user.email});
-    let startups=await addstartupModel.find({_id:{$in:user.bookmark}});
-    res.render('bookmarkpage',{user,startups});
+app.get('/bookmarkpage', isloggedin, async function (req, res) {
+    let user = await userModel.findOne({ email: req.user.email });
+    let startups = await addstartupModel.find({ _id: { $in: user.bookmark } });
+    res.render('bookmarkpage', { user, startups });
 })
 
 app.get('/companypage', isloggedin, async function (req, res) {
@@ -62,16 +62,16 @@ app.get('/delete/:id', isloggedin, async function (req, res) {
     res.redirect('/companypage');
 })
 
-app.get('/bookmark/:id',isloggedin,async function(req,res){
-    let user=await userModel.findOne({email:req.user.email});
-    let startup=await addstartupModel.findOne({_id:req.params.id});
-    if(user.bookmark.indexOf(startup._id)===-1){
+app.get('/bookmark/:id', isloggedin, async function (req, res) {
+    let user = await userModel.findOne({ email: req.user.email });
+    let startup = await addstartupModel.findOne({ _id: req.params.id });
+    if (user.bookmark.indexOf(startup._id) === -1) {
         user.bookmark.push(startup._id);
         startup.bookmarkedby.push(user._id);
     }
-    else{
-        user.bookmark.splice(user.bookmark.indexOf(startup._id),1);
-        startup.bookmarkedby.splice(startup.bookmarkedby.indexOf(user._id),1);
+    else {
+        user.bookmark.splice(user.bookmark.indexOf(startup._id), 1);
+        startup.bookmarkedby.splice(startup.bookmarkedby.indexOf(user._id), 1);
     }
     await user.save();
     await startup.save();
@@ -173,7 +173,7 @@ app.get('/logout', function (req, res) {
 
 app.post('/addstartup', isloggedin, async function (req, res) {
     let company = await companyModel.findOne({ email: req.user.email });
-    let { name, industry, otherindustry, size, founded, location, experience , stage , motive, websitelink , maplink , linkedinlink , twitterlink , imagelink } = req.body;
+    let { name, industry, otherindustry, size, founded, location, experience, stage, motive, websitelink, maplink, linkedinlink, twitterlink, imagelink } = req.body;
     let newstartup = await addstartupModel.create({
         name,
         industry,
@@ -191,14 +191,19 @@ app.post('/addstartup', isloggedin, async function (req, res) {
         imagelink,
         postedby: company._id
     })
+    console.log(newstartup);
+
+    //updating data 
     let impdata = await data.findOne();
     console.log(impdata);
 
-    if (!impdata){
-        impdata = await data.create({ location });
+    if (!impdata) {
+        impdata = await data.create({ location: location.toLowerCase() });
     }
-    else{
-        impdata.location.push(location);
+    else {
+        if (impdata.location.indexOf(location.toLowerCase()) === -1) {
+            impdata.location.push(location.toLowerCase());
+        }
     }
     console.log(impdata);
     await impdata.save();
@@ -227,8 +232,8 @@ app.post('/findstartup', isloggedin, async function (req, res) {
     res.render('index', { startups, user });
 })
 
-app.get("/getdata", isloggedin,async function (req, res) {
-    let impdata=await data.findOne()
+app.get("/getdata", isloggedin, async function (req, res) {
+    let impdata = await data.findOne()
     res.json(impdata);
 })
 
