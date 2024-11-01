@@ -126,8 +126,7 @@
                     </div>
                     <div class="card-right">
                         <h3>Company Details</h3>
-                        <div>
-                            <a href="/bookmark/<%= e._id %>">
+                        <div id="<%= e._id %>" onclick="togglebook('/bookmark/<%= e._id %>')">
                                 <% if (e.bookmarkedby.indexOf(user._id)===-1) { %>
                                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 50 50">
                                         <path
@@ -141,7 +140,6 @@
                                         </path>
                                     </svg>
                                 <% } %>
-                            </a>
                         </div>
                         <div class="details">
                             <div>

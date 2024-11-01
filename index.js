@@ -68,14 +68,17 @@ app.get('/bookmark/:id', isloggedin, async function (req, res) {
     if (user.bookmark.indexOf(startup._id) === -1) {
         user.bookmark.push(startup._id);
         startup.bookmarkedby.push(user._id);
+        await user.save();
+        await startup.save();
+        res.json({status:1,id:startup._id});;
     }
     else {
         user.bookmark.splice(user.bookmark.indexOf(startup._id), 1);
         startup.bookmarkedby.splice(startup.bookmarkedby.indexOf(user._id), 1);
+        await user.save();
+        await startup.save();
+        res.json({status:0,id:startup._id});
     }
-    await user.save();
-    await startup.save();
-    res.redirect('/profile');
 })
 
 // app.get('/update/:id',isloggedin,async function(req,res){
@@ -208,8 +211,8 @@ app.post('/addstartup', isloggedin, async function (req, res) {
     console.log(impdata);
     await impdata.save();
 
-    // company.posts.push(newstartup._id);
-    // await company.save();
+    company.posts.push(newstartup._id);
+    await company.save();
     res.redirect('/companypage');
 })
 
