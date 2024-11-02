@@ -14,7 +14,7 @@ body {
 .nav {
     display: grid;
     align-items: center;
-    grid-template-columns: 4fr 10fr 1fr;
+    grid-template-columns: 4fr 10fr;
     background-color: #1C1C1C;
 }
 
