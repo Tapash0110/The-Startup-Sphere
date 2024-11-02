@@ -81,10 +81,16 @@ app.get('/bookmark/:id', isloggedin, async function (req, res) {
     }
 })
 
-// app.get('/update/:id',isloggedin,async function(req,res){
-//     let startup=await addstartupModel.findOne({_id:req.params.id}).populate("postedby");
-//     res.render('update',{startup});
-// })
+app.get('/update/:id',isloggedin,async function(req,res){
+    let startup=await addstartupModel.findOne({_id:req.params.id});
+    res.render('update',{startup});
+})
+
+app.post('/update/:id',isloggedin,async function(req,res){
+    let {name,industry,otherindustry,size,founded,location,stage,experience,motive,websitelink,twitterlink,linkedinlink,maplink,imagelink}=req.body;
+    let startup=await addstartupModel.findOneAndUpdate({_id:req.params.id},{name,industry,otherindustry,size,founded,location,stage,experience,motive,websitelink,twitterlink,linkedinlink,maplink,imagelink});
+    res.redirect('/companypage');
+})
 
 app.get("/addstartup", isloggedin, function (req, res) {
     res.render("addstartup");
