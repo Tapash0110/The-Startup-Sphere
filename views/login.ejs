@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="hi.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://kit.fontawesome.com/97ebf5864" crossorigin="anonymous"> </script>
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="images/favicon/site.webmanifest">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <title>The StartUp Sphere</title>
+</head>
+
+<body>
+    <div class="wholebody">
+        <div class="container" id="container">
+            <div class="form-container sign-up-container">
+                <form action="/companylogin" id="companylogin" method="post">
+                    <h1>Company Login</h1>
+                    <div class="infield">
+                        <input type="email" placeholder="Company Email" name="email" />
+                        <label></label>
+                    </div>
+                    <div class="infield">
+                        <input type="password" placeholder="Password" name="password" />
+                        <label></label>
+                    </div>
+                    <input type="submit" value="Login" class="btn">
+                    <p class="signup">New to StartupSphere?</p>
+                    <a href="/signup" class="btn">Sign Up</a>
+                    <div class="status" id="companydisplay">
+                        <% if (locals.companystatus) { %>
+                            <p>
+                                <%= companystatus %>
+                            </p>
+                            <% } %>
+                    </div>
+                </form>
+            </div>
+            <div class="form-container sign-in-container">
+                <form action="/userlogin" id="userlogin" method="post">
+                    <h1>User Login</h1>
+                    <div class="infield">
+                        <input type="email" placeholder="Email" name="email" />
+                        <label></label>
+                    </div>
+                    <div class="infield">
+                        <input type="password" placeholder="Password" name="password" />
+                        <label></label>
+                    </div>
+                    <div class="status" id="userdisplay">
+                    </div>
+                    <input type="submit" value="Login" class="btn">
+                    <p class="signup">New to StartupSphere?</p>
+                    <a href="/signup" class="btn">Sign Up</a>
+                </form>
+            </div>
+            <div class="overlay-container" id="overlayCon">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Welcome Back!</h1>
+                        <p>If you are a person who searching for job then</p>
+                        <button>User Login</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                        <h1>Welcome Back!</h1>
+                        <p>Do your company needs experts then</p>
+                        <button>Company Login</button>
+                    </div>
+                </div>
+                <button id="overlayBtn"></button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const container = document.getElementById('container');
+        const overlayCon = document.getElementById('overlayCon');
+        const overlayBtn = document.getElementById('overlayBtn');
+
+        overlayBtn.addEventListener('click', () => {
+            container.classList.toggle('right-panel-active');
+        })
+        const userlogin = document.getElementById('userlogin');
+        const companylogin = document.getElementById('companylogin');
+        const displayuser = document.getElementById("userdisplay")
+        const displaycompany = document.getElementById("companydisplay")
+
+        userlogin.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            let formData = new FormData(userlogin);
+            const data = {};
+            for (let keyValue of formData.entries()) {
+                data[keyValue[0]] = keyValue[1];
+            }
+            let a = await fetch("/userlogin", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            })
+            let b = await a.json();
+
+            if (b.status === 1) {
+                displayuser.innerHTML = "login successful";
+                setTimeout(function () {
+                    window.location.href = "/profile";
+                }, 1000);
+            } else {
+                if (b.error == "email")
+                    displayuser.innerHTML = "Email not registered try signup";
+                else
+                    displayuser.innerHTML = "Wrong password";
+            }
+        });
+
+        companylogin.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            let formData = new FormData(companylogin);
+            const data = {};
+            for (let keyValue of formData.entries()) {
+                data[keyValue[0]] = keyValue[1];
+            }
+            let a = await fetch("/companylogin", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            })
+            let b = await a.json();
+            console.log(b);
+
+
+            if (b.status === 1) {
+                displaycompany.innerHTML = "login successful";
+                setTimeout(function () {
+                    window.location.href = "/companypage";
+                }, 1000);
+            } else {
+                if (b.error == "email")
+                    displaycompany.innerHTML = "Email not registered try signup";
+                else
+                    displaycompany.innerHTML = "Wrong password";
+            }
+        });
+    </script>
+
+</body>
+
+</html>

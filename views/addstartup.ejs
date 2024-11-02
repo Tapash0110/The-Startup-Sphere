@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The StartUp Sphere</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="images/favicon/site.webmanifest">
+    <link rel="stylesheet" href="/css/addstup.css">
+</head>
+
+<body>
+  <h1>Add A Startup!</h1>
+  <div class="forms">
+    <div class="form-container">
+      <form action="/addstartup" method="post">
+        <div class="form-group">
+          <label for="name">Name of the Company:</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div class="form-group">
+          <label for="industry">Industry:</label>
+          <select name="industry" id="industry" required>
+            <option value="" diasabled selected>Choose an industry</option>
+            <option value="Healthcare">Healthcare</option>
+            <option value="Analytics">Analytics</option>
+            <option value="Gaming">Gaming</option>
+            <option value="Data-Science">Data Science</option>
+            <option value="Hardware">Hardware</option>
+            <option value="Media">Media</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Retail">Retail</option>
+            <option value="Bio-Tech">Bio Tech</option>
+            <option value="Consumer">Consumer</option>
+            <option value="EdTech">EdTech</option>
+            <option value="Others">Others</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="otherindustry">If selected 'Others' mention Industry:</label>
+          <input type="text" id="otherindustry" name="otherindustry" />
+        </div>
+        <div class="form-group">
+          <label for="size">Size of the Company:</label>
+          <select name="size" id="size" required>
+            <option value="" diasabled selected>Choose a size</option>
+            <option value="1-20">1-20 employees</option>
+            <option value="21-50">21-50 employees</option>
+            <option value="51-100">51-100 employees</option>
+            <option value="101-200">101-200 employees</option>
+            <option value="201-200">201-500 employees</option>
+            <option value="501-1000">501-1000 employees</option>
+            <option value="1001-5000">1001-5000 employees</option>
+            <option value="5000+">5000+ employees</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="founded">Year of Foundation:</label>
+          <select name="founded" id="founded" required>
+            <option value="" diasabled selected>Choose a year</option>
+            <option value="2012">2012</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="location">Headquarter Location(City):</label>
+          <input type="text" name="location" id="search-location" onkeyup="filterLocations()" autocomplete="off" required>
+          <div id="location-dropdown" class="dropdown-content"></div>
+        </div>
+        <div class="form-group">
+          <label for="stage">Select Stage:</label>
+          <select name="stage" id="stage" required>
+            <option value="" diasabled selected>Choose a stage</option>
+            <option value="Pre-Seed">Pre-Seed</option>
+            <option value="Seed">Seed</option>
+            <option value="Series-A">Series A</option>
+            <option value="Series-B">Series B</option>
+            <option value="Series-C">Series C</option>
+            <option value="Series-D">Series D</option>
+            <option value="Post-IPO">Post-IPO</option>
+            <option value="Others">Others</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="Exprerience">Exprerience:</label>
+          <select name="experience" id="Exprerience" required>
+            <option value="" diasabled selected>Choose Exprerience</option>
+            <option value="Fresher">Fresher</option>
+            <option value="1+year">1+ years</option>
+            <option value="2+year">2+ years</option>
+            <option value="3+year">3+ years</option>
+            <option value="4+year">4+ years</option>
+            <option value="5+year">5+ years</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="motive">Description:</label>
+          <textarea name="motive" id="motive" placeholder="Tell about your Company" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="link">Provide Company Website URL:</label>
+          <input type="url" id="Website" name="websitelink" required />
+        </div>
+        <div class="form-group">
+          <label for="link">Provide Twitter URL:</label>
+          <input type="url" id="Twitter" name="twitterlink" required />
+        </div>
+        <div class="form-group">
+          <label for="link">Provide Linkedin URL:</label>
+          <input type="url" id="Linkedin" name="linkedinlink" required />
+        </div>
+        <div class="form-group">
+          <label for="link">Provide Location URL of Company:</label>
+          <input type="url" id="Location" name="maplink" required />
+        </div>
+        <div class="form-group">
+          <label for="link">Provide Company Image URL:</label>
+          <input type="url" id="Image" name="imagelink" required />
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Submit" id="find_startups" />
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="/scripts/addstup.js"></script>
+</body>
+
+</html>

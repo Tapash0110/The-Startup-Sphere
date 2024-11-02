@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="hi.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://kit.fontawesome.com/97ebf5864" crossorigin="anonymous"> </script>
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="images/favicon/site.webmanifest">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <title>The StartUp Sphere</title>
+</head>
+
+<body>
+    <div class="wholebody">
+        <div class="container" id="container">
+            <div class="form-container sign-up-container">
+                <form action="/companysignup" id="companysignup" method="post">
+                    <h1>Company SignUp</h1>
+                    <div class="infield">
+                        <input type="email" placeholder="Company Email" name="email" required />
+                        <label></label>
+                    </div>
+                    <div class="infield">
+                        <input type="text" placeholder="Company Name" name="username" required />
+                        <label></label>
+                    </div>
+                    <div class="infield">
+                        <input type="password" placeholder="Password" name="password" required />
+                        <label></label>
+                    </div>
+                    <input type="submit" value="SignUp" class="btn">
+                    <p class="signup">User of StartupSphere?</p>
+                    <a href="/login" class="btn">Login</a>
+                    <div class="status" id="companydisplay">
+                        <% if (locals.companystatus) { %>
+                            <p>
+                                <%= companystatus %>
+                            </p>
+                            <% } %>
+                    </div>
+                </form>
+            </div>
+            <div class="form-container sign-in-container">
+                <form action="/usersignup" id="usersignup" method="post">
+                    <h1>User SignUp</h1>
+                    <div class="infield">
+                        <input type="email" placeholder="Email" name="email" required />
+                        <label></label>
+                    </div>
+                    <div class="infield">
+                        <input type="text" placeholder="User Name" name="username" required />
+                        <label></label>
+                    </div>
+                    <div class="infield">
+                        <input type="password" placeholder="Password" name="password" required />
+                        <label></label>
+                    </div>
+                    <input type="submit" value="SignUp" class="btn">
+                    <p class="signup">User of StartupSphere?</p>
+                    <a href="/login" class="btn">Login</a>
+                    <div class="status" id="userdisplay">
+                        <% if (locals.userstatus) { %>
+                            <p>
+                                <%= userstatus %>
+                            </p>
+                            <% } %>
+                    </div>
+                </form>
+            </div>
+            <div class="overlay-container" id="overlayCon">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Hi</h1>
+                        <p>Want to get a job then</p>
+                        <button>User SignUp</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                        <h1>Hi</h1>
+                        <p>Do your company need experts then</p>
+                        <button>Company SignUp</button>
+                    </div>
+                </div>
+                <button id="overlayBtn"></button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const container = document.getElementById('container');
+        const overlayCon = document.getElementById('overlayCon');
+        const overlayBtn = document.getElementById('overlayBtn');
+
+        overlayBtn.addEventListener('click', () => {
+            container.classList.toggle('right-panel-active');
+        })
+        const usersignup = document.getElementById('usersignup');
+        const companysignup = document.getElementById('companysignup');
+        const displayuser = document.getElementById("userdisplay")
+        const displaycompany = document.getElementById("companydisplay")
+
+        usersignup.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            let formData = new FormData(usersignup);
+            const data = {};
+            for (let keyValue of formData.entries()) {
+                data[keyValue[0]] = keyValue[1];
+            }
+            let a = await fetch("/usersignup", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            })
+            let b = await a.json();
+
+            if (b.status === 1) {
+                displayuser.innerHTML = "signup successful";
+                setTimeout(function () {
+                    window.location.href = "/profile";
+                }, 1000);
+            } else {
+                if (b.error == "email")
+                    displayuser.innerHTML = "Email already registered try login";
+                else
+                    displayuser.innerHTML = "username already exist";
+            }
+        });
+
+        companysignup.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            let formData = new FormData(companysignup);
+            const data = {};
+            for (let keyValue of formData.entries()) {
+                data[keyValue[0]] = keyValue[1];
+            }
+            let a = await fetch("/companysignup", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            })
+            let b = await a.json();
+            console.log(b);
+
+
+            if (b.status === 1) {
+                displaycompany.innerHTML = "signup successful";
+                setTimeout(function () {
+                    window.location.href = "/companypage";
+                }, 1000);
+            } else {
+                if (b.error == "email")
+                    displaycompany.innerHTML = "Email already registered try login";
+                else
+                    displaycompany.innerHTML = "username already exist";
+            }
+        });
+    </script>
+
+</body>
+
+</html>

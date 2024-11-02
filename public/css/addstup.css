@@ -1,71 +1,100 @@
-*{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
 body{
-   background-color: black; 
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin: 0;
+    background-image: url("https://img.freepik.com/premium-photo/black-white-image-dark-background-with-white-line_994023-194794.jpg");
 }
+
 h1{
-    background: linear-gradient(to right,#7f40ed, #f2405a);
+    background: linear-gradient(to right,#3a63ea, #313bf7);
     -webkit-background-clip: text; 
     background-clip: text; 
     color: transparent;
     font-weight: bolder; 
     text-align: center;
 }
+
 .forms{
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .form-container{
     border: 1px solid #ccc; 
     padding: 20px;
     border-radius: 8px;
-    background-color: #ffffff;
-    width: 60%;
-    color: #000000;
+    width: 80%;
+    color: #6cafff;
     font-size: 1.5rem;
+    font-family: 'Courier New', Courier, monospace;
+    margin-bottom: 15px;
+    background-color: #061218;
 }
+
 label {
     font-weight: 700;
     margin: 8px 4px;
 }
 
 select,input,textarea {
+    color: #fafafa;
     width: 97%;
-    resize:none;
     padding: 8px;
     margin: 5px 0px 12px 0px;
-    background-color: transparent;
+    background-color: #061218;
     border: 3px solid #b7b3b3;
     border-radius: 10px;
     font-size: 1.2rem;
     transition: 0.1s;
+    resize: none;
 }
+
 select{
     width: 99%;
 }
+
 select:hover,input:hover,textarea:hover{
-    border: 3px solid #9c4ea4;
+    border: 3px solid #8772f1;
 }
-.form-group button {
-    height:1%;
-    width:10%;
-    padding: 12px;
-    margin: 7px;
+
+#find_startups {
+    width: 100px;
+    padding: 10px;
+    margin: 5px;
     border: none;
     border-radius: 10px;
-    background: linear-gradient(to right, #7731f0, #ef1637);
+    background: linear-gradient(to right, #3a63ea, #0813eb);
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
     transition: 0.5s;
 }
-.form-group button:hover {
-    padding: 1%;
+
+#find_startups:hover{
+    padding: 15px;
     margin:0px;
 }
-.form-group-butn{
-    display: flex;
-    justify-content: end;
+
+#location-dropdown {
+    display: none;
+    background-color: #061218;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1;
+    border: 3px solid #203c4e;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-top: 2px;
+    box-sizing: border-box;
+}
+
+.location-option {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.location-option:hover {
+    background-color: #1967d2;
 }
