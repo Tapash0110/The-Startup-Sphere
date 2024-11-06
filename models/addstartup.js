@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-// mongoose.connect('mongodb://127.0.0.1:27017/startupsphere')
-mongoose.connect('mongodb+srv://samarpitalds:uEGtUwJDi3Blmuqn@startup-sphere.vyzmm.mongodb.net/startupsphere')
+mongoose.connect('mongodb://127.0.0.1:27017/startupsphere')
+// mongoose.connect('mongodb+srv://samarpitalds:uEGtUwJDi3Blmuqn@startup-sphere.vyzmm.mongodb.net/startupsphere')
 
 const addstartupSchema=mongoose.Schema({
     name:String,

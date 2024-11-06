@@ -233,7 +233,7 @@ border-radius: inherit;
 #find_startups {
     width: 130px;
     padding: 12px;
-    margin: 5px;
+    margin: 2px;
     border: none;
     border-radius: 10px;
     background: linear-gradient(to right, #3a63ea, #0813eb);
@@ -245,7 +245,7 @@ border-radius: inherit;
 }
 
 #find_startups:hover{
-    padding: 15px;
+    padding: 14px;
     margin:0px;
 
 }
